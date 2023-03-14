@@ -11,184 +11,93 @@ import { withStyles } from '@material-ui/core/styles';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { ListItemButton } from '@mui/material';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import CssBaseline from '@mui/material/CssBaseline';
 
-
-
-const drawerWidth = 250;
-const theme = createMuiTheme({
-palette: {
-        primary: {
-            main: '#fefefe',
-        },
-        secondary: {
-            main: '#3e4f6a',
-        },
-    },
-});
-const styles = theme => ({
-    root: {
-        display: 'flex',
-    },
-    drawer: {
-        [theme.breakpoints.up('md')]: {
-            width: drawerWidth,
-            flexShrink: 0,
-        },
-    },
-    drawerPaper: {
-        width: drawerWidth,
-        backgroundColor: "rgba(23, 37, 42, 1)",
-        color: "#fefefe",
-        border: "none",
-    },
-    content: {
-        flexGrow: 1,
-        minHeight: "100vh",
-    },
-    icon: {
-        color: "#fefefe",
-    },
-    toolbar: theme.mixins.toolbar,
-});
-class Layout extends Component {
-    state = {
-        mobileOpen: false,
-    };
-handleDrawerToggle = () => {
-        this.setState(state => ({ mobileOpen: !state.mobileOpen }));
-    };
-    render() {
-        const { classes } = this.props;
-        const { mobileOpen } = this.state;
-const drawer = (
-            
-            <div id="drawer-container">
-                <div className="logo-drawer" />
-                <List>
-                    <ListItem onClick={mobileOpen ? this.handleDrawerToggle : null} >
+               
+                const drawerWidth = 240;
+                
+                export default function PermanentDrawerLeft() { 
+                  return (
+                    <Box sx={{ display: 'flex' }}>
+                      <CssBaseline />
+                      <AppBar
+                        position="fixed"
+                        sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
+                      >
+                        <Toolbar>
+                          <Typography variant="h6" noWrap component="div">
+                            FlashFriends
+                          </Typography>
+                        </Toolbar>
+                      </AppBar>
+                      <Drawer
+                        sx={{
+                          width: drawerWidth,
+                          flexShrink: 0,
+                          '& .MuiDrawer-paper': {
+                            width: drawerWidth,
+                            boxSizing: 'border-box',
+                          },
+                        }}
+                        variant="permanent"
+                        anchor="left"
+                      >
+                        <Toolbar />
+                        <Divider />
+                        <List>
+                    <ListItem>
                         <ListItemIcon>
-                            <HomeIcon className={classes.icon} />
+                            <HomeIcon />
                         </ListItemIcon>
                         <ListItemButton component="a" href="/">
                         <ListItemText primary="Home" />
                         </ListItemButton>
                     </ListItem>
                     <Divider />
-                    <ListItem onClick={mobileOpen ? this.handleDrawerToggle : null}>
+                    <ListItem>
                         <ListItemIcon>
-                            <CalendarMonthIcon className={classes.icon} />
+                            <CalendarMonthIcon />
                         </ListItemIcon>
                         <ListItemButton component="a" href="./CalendarApp">
                         <ListItemText primary="Calendar" />
                         </ListItemButton>
                     </ListItem>
-                    <ListItem onClick={mobileOpen ? this.handleDrawerToggle : null}>
+                    <ListItem>
                         <ListItemIcon>
-                            <EmailIcon className={classes.icon} />
+                            <EmailIcon />
                         </ListItemIcon>
                         <ListItemButton component="a" href="./Messages">
                         <ListItemText primary="Messages" />
                         </ListItemButton>
                     </ListItem>
-                    <ListItem onClick={mobileOpen ? this.handleDrawerToggle : null}>
+                </List>
+                        <Divider />
+                        <List>
+                    <ListItem>
                         <ListItemIcon>
-                            <PersonIcon className={classes.icon} />
+                            <HomeIcon />
+                        </ListItemIcon>
+                        <ListItemButton component="a" href="/Login">
+                        <ListItemText primary="Login" />
+                        </ListItemButton>
+                    </ListItem>
+                    <Divider />
+                    <ListItem>
+                        <ListItemIcon>
+                            <CalendarMonthIcon />
                         </ListItemIcon>
                         <ListItemButton component="a" href="./Support">
                         <ListItemText primary="Support" />
                         </ListItemButton>
                     </ListItem>
                 </List>
-        </div>
-
-        );
-        return (
-            <div>
-                <div class="col-md-4">
-                <div id="main-background" />
-                <div id="main-layout">
-                    <MuiThemeProvider theme={theme}>
-                        <div className={classes.root} >
-                            <Hidden mdUp implementation="css">
-                                <AppBar position="fixed" color="secondary">
-                                    <Toolbar>
-                                        <IconButton
-                                            color="inherit"
-                                            aria-label="Open drawer"
-                                            onClick={this.handleDrawerToggle}
-                                            className={classes.menuButton}
-                                        >
-                                            <MenuIcon />
-                                        </IconButton>
-                                        <Typography variant="h6" color="inherit" className={classes.title}>
-                                            New app
-                                    </Typography>
-                                    </Toolbar>
-                                </AppBar>
-                            </Hidden>
-                            <nav className={classes.drawer}>
-                                <Hidden mdUp implementation="css">
-                                    <Drawer
-                                        color="primary"
-                                        className={classes.drawer}
-                                        variant="temporary"
-                                        open={mobileOpen}
-                                        onClose={this.handleDrawerToggle}
-                                        classes={{
-                                            paper: classes.drawerPaper,
-                                        }}
-                                        anchor="left"
-                                    >
-                                        {drawer}
-                                    </Drawer>
-                                </Hidden>
-                                <Hidden smDown implementation="css">
-                                    <Drawer
-                                        classes={{
-                                            paper: classes.drawerPaper,
-                                        }}
-                                        variant="permanent"
-                                        open
-                                    >
-                                        {drawer}
-                                    </Drawer>
-                                </Hidden>
-                            </nav>
-                        </div>
-                    </MuiThemeProvider>
-                </div>
-            </div>
-            </div>
-        );
-    }
-}
-export default withStyles(styles)(Layout)
-/*
-<List>
-                    <ListItem onClick={mobileOpen ? this.handleDrawerToggle : null} >
-                        <ListItemIcon>
-                            <HomeIcon className={classes.icon} />
-                        </ListItemIcon>
-                        <ListItemText primary="Home" />
-                    </ListItem>
-                    <Divider />
-                    <ListItem onClick={mobileOpen ? this.handleDrawerToggle : null}>
-                        <ListItemIcon>
-                            <CalendarMonthIcon className={classes.icon} />
-                        </ListItemIcon>
-                        <ListItemText primary="Calendar" />
-                    </ListItem>
-                    <ListItem onClick={mobileOpen ? this.handleDrawerToggle : null}>
-                        <ListItemIcon>
-                            <EmailIcon className={classes.icon} />
-                        </ListItemIcon>
-                        <ListItemText primary="Messages" />
-                    </ListItem>
-                    <ListItem onClick={mobileOpen ? this.handleDrawerToggle : null}>
-                        <ListItemIcon>
-                            <PersonIcon className={classes.icon} />
-                        </ListItemIcon>
-                        <ListItemText primary="Contact Us" />
-                    </ListItem>
-                </List>
-                */
+                      </Drawer>
+                      <Box
+                        component="main"
+                        sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}
+                      >
+                        <Toolbar />
+                      </Box>
+                    </Box>
+                  );
+                }
