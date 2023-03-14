@@ -1,33 +1,27 @@
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 
-export default function ButtonAppBar() {
+import { BrowserRouter as Router, Routes, Route}
+    from 'react-router-dom';
+import Home from './Home';
+import MyCalendar from './CalendarApp';
+import Messages from './Messages';
+import Support from './Support';
+import Login from './Login';
+import Navbar from './Navbar';
+
+function App() {
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Flash Friends
-          </Typography>
-          <a href="https://react.school"><Button color="inherit">Calendar</Button></a>
-          <Button color="inherit">Login</Button>
-        </Toolbar>
-      </AppBar>
-    </Box>
+      <Router>
+      <Navbar />
+      <Routes>
+          <Route exact path='/' element={<Home/>} />
+          <Route path='/CalendarApp' element={<MyCalendar/>} />
+          <Route path='/Messages' element={<Messages/>} />
+          <Route path='/Support' element={<Support/>} />
+          <Route path='/Login' element={<Login/>} />
+      </Routes>
+      </Router>
   );
-}
+  }
+    
+  export default App;
