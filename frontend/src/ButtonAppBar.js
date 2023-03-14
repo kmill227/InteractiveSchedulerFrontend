@@ -26,7 +26,7 @@ export default function ButtonAppBar() {
               
             </IconButton>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              Flash Friend
+              Flash Friends
             </Typography>
             <a href="https://react.school"><Button color="inherit">Calendar</Button></a>
             <Button color="inherit">Login</Button>

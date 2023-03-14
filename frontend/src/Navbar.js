@@ -18,7 +18,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import EmailIcon from '@mui/icons-material/Email';
 import Help from '@material-ui/icons/Help';
-
+import logo from './images/smaller-long-logo.png';
 
 
 const drawerWidth = 240;
@@ -32,9 +32,7 @@ export default function PermanentDrawerLeft() {
         sx={{ width: "85%"}}
       >
         <Toolbar>
-          <Typography variant="h6" noWrap component="div">
-            Flash Friends
-          </Typography>
+        <img src={logo}></img>
         </Toolbar>
       </AppBar>
       <Drawer
