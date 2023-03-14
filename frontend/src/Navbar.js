@@ -1,4 +1,4 @@
-import React from 'react';
+/*import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 import AppBar from '@material-ui/core/AppBar';
@@ -65,16 +65,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Navigation(props) {
+export default function Navbar(props) {
   const classes = useStyles();
 
   const content = {
     'brand': { image: 'nereus-assets/img/nereus-dark.png', width: 110 },
     'brand-mobile': { image: 'nereus-assets/img/nereus-light.png', width: 110 },
-    'link1': 'Section One',
-    'link2': 'Section Two',
-    'link3': 'Section Three',
-    'link4': 'Section Four',
+    'link1': 'Home',
+    'link2': 'Calendar',
+    'link3': 'Contact Us',
+    'link4': 'Account',
     ...props.content
   };
 
@@ -190,3 +190,151 @@ export default function Navigation(props) {
     </div>
   );
 }
+*/
+import React, { Component } from 'react';
+import './App.css';
+import { Box, List, Divider, ListItem, ListItemIcon, ListItemText, Hidden, Drawer, Typography, AppBar, Toolbar, IconButton } from '@material-ui/core';
+import PersonIcon from '@material-ui/icons/Person';
+import HomeIcon from '@material-ui/icons/Home';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import Help from '@material-ui/icons/Help';
+import MenuIcon from '@material-ui/icons/Menu';
+import { withStyles } from '@material-ui/core/styles';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+const drawerWidth = 250;
+const theme = createMuiTheme({
+palette: {
+        primary: {
+            main: '#fefefe',
+        },
+        secondary: {
+            main: '#3e4f6a',
+        },
+    },
+});
+const styles = theme => ({
+    root: {
+        display: 'flex',
+    },
+    drawer: {
+        [theme.breakpoints.up('md')]: {
+            width: drawerWidth,
+            flexShrink: 0,
+        },
+    },
+    drawerPaper: {
+        width: drawerWidth,
+        backgroundColor: "rgba(23, 37, 42, 1)",
+        color: "#fefefe",
+        border: "none",
+    },
+    content: {
+        flexGrow: 1,
+        minHeight: "100vh",
+    },
+    icon: {
+        color: "#fefefe",
+    },
+    toolbar: theme.mixins.toolbar,
+});
+class Layout extends Component {
+    state = {
+        mobileOpen: false,
+    };
+handleDrawerToggle = () => {
+        this.setState(state => ({ mobileOpen: !state.mobileOpen }));
+    };
+    render() {
+        const { classes } = this.props;
+        const { mobileOpen } = this.state;
+const drawer = (
+            <div id="drawer-container">
+                <div className="logo-drawer" />
+                <List>
+                    <ListItem onClick={mobileOpen ? this.handleDrawerToggle : null}>
+                        <ListItemIcon>
+                            <HomeIcon className={classes.icon} />
+                        </ListItemIcon>
+                        <ListItemText primary="Home" />
+                    </ListItem>
+                    <Divider />
+                    <ListItem onClick={mobileOpen ? this.handleDrawerToggle : null}>
+                        <ListItemIcon>
+                            <CalendarMonthIcon className={classes.icon} />
+                        </ListItemIcon>
+                        <ListItemText primary="Calendar" />
+                    </ListItem>
+                    <ListItem onClick={mobileOpen ? this.handleDrawerToggle : null}>
+                        <ListItemIcon>
+                            <PersonIcon className={classes.icon} />
+                        </ListItemIcon>
+                        <ListItemText primary="Messages" />
+                    </ListItem>
+                    <ListItem onClick={mobileOpen ? this.handleDrawerToggle : null}>
+                        <ListItemIcon>
+                            <PersonIcon className={classes.icon} />
+                        </ListItemIcon>
+                        <ListItemText primary="Contact Us" />
+                    </ListItem>
+                </List>
+            </div>
+        );
+        return (
+            <div>
+                <div id="main-background" />
+                <div id="main-layout">
+                    <MuiThemeProvider theme={theme}>
+                        <div className={classes.root} >
+                            <Hidden mdUp implementation="css">
+                                <AppBar position="fixed" color="secondary">
+                                    <Toolbar>
+                                        <IconButton
+                                            color="inherit"
+                                            aria-label="Open drawer"
+                                            onClick={this.handleDrawerToggle}
+                                            className={classes.menuButton}
+                                        >
+                                            <MenuIcon />
+                                        </IconButton>
+                                        <Typography variant="h6" color="inherit" className={classes.title}>
+                                            New app
+                                    </Typography>
+                                    </Toolbar>
+                                </AppBar>
+                            </Hidden>
+                            <nav className={classes.drawer}>
+                                <Hidden mdUp implementation="css">
+                                    <Drawer
+                                        color="primary"
+                                        className={classes.drawer}
+                                        variant="temporary"
+                                        open={mobileOpen}
+                                        onClose={this.handleDrawerToggle}
+                                        classes={{
+                                            paper: classes.drawerPaper,
+                                        }}
+                                        anchor="left"
+                                    >
+                                        {drawer}
+                                    </Drawer>
+                                </Hidden>
+                                <Hidden smDown implementation="css">
+                                    <Drawer
+                                        classes={{
+                                            paper: classes.drawerPaper,
+                                        }}
+                                        variant="permanent"
+                                        open
+                                    >
+                                        {drawer}
+                                    </Drawer>
+                                </Hidden>
+                            </nav>
+                        </div>
+                    </MuiThemeProvider>
+                </div>
+            </div>
+        );
+    }
+}
+export default withStyles(styles)(Layout)
