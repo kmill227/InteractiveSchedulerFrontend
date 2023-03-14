@@ -1,14 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-/*
-const Calendar = () => {
-  return (
-    <div class="col-md-8"><h1>You can see calendar soon!</h1></div>
-  );
-};
-*/
-
 import { render } from "react-dom";
 import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import { format, parse, startOfWeek, getDay } from "date-fns";
