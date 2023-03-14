@@ -5,6 +5,10 @@ import { render } from "react-dom";
 import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import { format, parse, startOfWeek, getDay } from "date-fns";
 import "react-big-calendar/lib/css/react-big-calendar.css";
+import AddEvent from './AddEvent';
+import Button from '@mui/material/Button';
+import { Link } from 'react-router-dom';
+
 
 const locales = {
 	"en-US": require("date-fns")
@@ -20,9 +24,13 @@ const localizer = dateFnsLocalizer({
  const MyCalendar = () => {
     return(
 	<>
+    <div>
+        
 		<div className="calendar">
+        <Button variant="contained" as={Link} to="/AddEvent">
+            Add Event
+        </Button>
 			<div>
-				<h1>calendar1</h1>
 				<Calendar
 					localizer={localizer}
 					defaultDate={new Date()}
@@ -30,6 +38,7 @@ const localizer = dateFnsLocalizer({
 				/>
 			</div>
 		</div>
+        </div>
 	</>
 );
     };

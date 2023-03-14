@@ -1,10 +1,10 @@
-import React from 'react';
-import Calendar from 'react-mui-calendar';
+import React from "react";
+import './CalendarApp';
+import MyCalendar from "./CalendarApp";
 
-const Home = () => {
+
+export default function(){
     return (
-        <h1>Home page coming soon</h1>
+        <h1>Home page coming soon!</h1>
     );
 }
-
-export default Home;

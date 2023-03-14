@@ -8,6 +8,7 @@ import Messages from './Messages';
 import Support from './Support';
 import Login from './Login';
 import Navbar from './Navbar';
+import AddEvent from './AddEvent';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path='/Messages' element={<Messages/>} />
           <Route path='/Support' element={<Support/>} />
           <Route path='/Login' element={<Login/>} />
+          <Route path='/AddEvent' element={<AddEvent/>} />
       </Routes>
       </div>
       </Router>
