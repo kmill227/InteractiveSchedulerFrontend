@@ -9,7 +9,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 
 export default function ButtonAppBar() {
     return (
-      <Box sx={{ flexGrow: 1 }}>
+      <Box sx={{ flexGrow: 1}}>
         <AppBar position="static">
           <Toolbar>
             <IconButton
@@ -17,6 +17,7 @@ export default function ButtonAppBar() {
               edge="start"
               color="inherit"
               aria-label="menu"
+              
               sx={{ mr: 2 }}
             >
               <MenuIcon>
@@ -25,7 +26,7 @@ export default function ButtonAppBar() {
               
             </IconButton>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              Flash Friends
+              Flash Friend
             </Typography>
             <a href="https://react.school"><Button color="inherit">Calendar</Button></a>
             <Button color="inherit">Login</Button>
