@@ -37,10 +37,10 @@ export default function PermanentDrawerLeft() {
       </AppBar>
       <Drawer
         sx={{
-          width: drawerWidth,
+          width: "15%",
           flexShrink: 0,
           '& .MuiDrawer-paper': {
-            width: drawerWidth,
+            width: "15%",
             boxSizing: 'border-box',
           },
         }}
