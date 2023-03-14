@@ -27,9 +27,11 @@ const localizer = dateFnsLocalizer({
     <div>
         
 		<div className="calendar">
-        <Button variant="contained" as={Link} to="/AddEvent">
+            <div style={{marginBottom: "20px"}}>
+        <Button style={{marginLeft: "20px"}}variant="contained" as={Link} to="/AddEvent">
             Add Event
         </Button>
+        </div>
 			<div>
 				<Calendar
 					localizer={localizer}
