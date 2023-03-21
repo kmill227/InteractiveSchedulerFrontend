@@ -9,12 +9,14 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { CardHeader } from '@material-ui/core';
 import Grid from "@material-ui/core/Grid";
+import { useState, useEffect } from 'react';
 
 
 export default function GroupCard() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  
   const style = {
     position: 'absolute',
     top: '50%',
@@ -27,13 +29,20 @@ export default function GroupCard() {
     p: 4,
     textAlign: 'center'
   };
-
-  const data = [
+    const [data, setData] = useState([]);
+  
+    useEffect(() => {
+      fetch('http://127.0.0.1:8000/api/groups')
+        .then(response => response.json())
+        .then(data => setData(data));
+    }, []);
+  
+  /*const data = [
     { name: 'Pokemon Go'},
     { name: 'Basketball'},
     { name: 'Jazz Club'}
 
-]
+] */
     return (
       <Grid
       container
@@ -49,7 +58,8 @@ export default function GroupCard() {
                       title={`${elem.name}`} variant="h5"
                   />
                   <CardContent>
-      </CardContent>
+                    {elem.description}
+                  </CardContent>
       <CardActions className={"cardButton"}>
         <Button size="small" onClick={handleOpen}>Join Group</Button>
       </CardActions>

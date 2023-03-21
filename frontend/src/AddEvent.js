@@ -19,7 +19,7 @@ import axios from 'axios';
     function AddEvent() {
         const [description, setDescription] = useState("");
         const [time, setTime] = useState("");
-        const [accessLevel, setAccessLevel] = useState(1);
+        const [accesslevel, setAccessLevel] = useState(1);
         const [alert, setAlert] = useState(1);
 
         
@@ -27,16 +27,16 @@ import axios from 'axios';
             console.log({description});
             console.log({time});
             console.log({alert});
-            console.log({accessLevel});
+            console.log({accesslevel});
         let res = fetch('http://127.0.0.1:8000/api/events', {
-            mode: 'no-cors',
-            method: "POST",
+
+            method: "PUT",
             headers: {'Content-Type': 'multipart/form-data' },
             body : JSON.stringify({
-                'description': description,
-                'time': time,
-                'accessLevel': accessLevel,
-                'alert': alert,
+                "description": description,
+                "time": time,
+                "accesslevel": accesslevel,
+                "alert": alert,
             }),
             
         });
@@ -66,7 +66,7 @@ import axios from 'axios';
                 </FormControl>
             </Grid>
             <Grid item xs={12} align="center">
-                <TextField label="Acces Level" type="number" value={accessLevel} onChange={(e) => setAccessLevel(e.target.value)} InputProps={{ inputProps: { min: 0, max: 5 } }} />
+                <TextField label="Acces Level" type="number" value={accesslevel} onChange={(e) => setAccessLevel(e.target.value)} InputProps={{ inputProps: { min: 0, max: 5 } }} />
             </Grid>
             <Grid item xs={12}>
                  <Button type="submit" onClick={handleSubmit} color="primary" variant='contained'>AddEvent</Button>
