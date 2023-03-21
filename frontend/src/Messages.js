@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Messages = () => {
   return (
-    <div class="col-md-8"><h1>You can send messages soon!</h1></div>
+    <div className="col-md-8"><h1>You can send messages soon!</h1></div>
   );
 };
   

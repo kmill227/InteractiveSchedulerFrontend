@@ -37,12 +37,6 @@ export default function GroupCard() {
         .then(data => setData(data));
     }, []);
   
-  /*const data = [
-    { name: 'Pokemon Go'},
-    { name: 'Basketball'},
-    { name: 'Jazz Club'}
-
-] */
     return (
       <Grid
       container
