@@ -19,13 +19,14 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import EmailIcon from '@mui/icons-material/Email';
 import Help from '@material-ui/icons/Help';
 import logo from './images/smaller-long-logo.png';
+import './navbar.css';
 
 
 const drawerWidth = 240;
 
 export default function PermanentDrawerLeft() {
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex', }}>
       <CssBaseline />
       <AppBar
         position="fixed"
@@ -49,13 +50,21 @@ export default function PermanentDrawerLeft() {
       >
         <Toolbar />
         <Divider />
-        <List>
-        <ListItem>
+        <List id="List">
+        <ListItem id="listItem">
                         <ListItemIcon>
                             <HomeIcon />
                         </ListItemIcon>
                         <ListItemButton component="a" href="/">
-                        <ListItemText primary="Home" />
+                        <ListItemText primary="Home"/>
+                        </ListItemButton>
+                    </ListItem>
+                    <ListItem>
+                        <ListItemIcon>
+                            <PersonIcon />
+                        </ListItemIcon>
+                        <ListItemButton component="a" href="/Groups">
+                        <ListItemText primary="Groups" />
                         </ListItemButton>
                     </ListItem>
                     <ListItem>
@@ -74,9 +83,6 @@ export default function PermanentDrawerLeft() {
                         <ListItemText primary="Messages" />
                         </ListItemButton>
                     </ListItem>
-        </List>
-        <Divider />
-        <List>
         <ListItem>
                         <ListItemIcon>
                             <HomeIcon />
@@ -93,7 +99,7 @@ export default function PermanentDrawerLeft() {
                         <ListItemText primary="Support" />
                         </ListItemButton>
                     </ListItem>
-        </List>
+                    </List>
       </Drawer>
       <Box
         component="main"

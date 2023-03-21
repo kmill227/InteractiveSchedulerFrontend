@@ -9,6 +9,7 @@ import Support from './Support';
 import Login from './Login';
 import Navbar from './Navbar';
 import AddEvent from './AddEvent';
+import Groups from './Groups';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <div id="main" class="main">
       <Routes>
           <Route exact path='/' element={<Home/>} />
+          <Route exact path='/Groups' element={<Groups/>} />
           <Route path='/CalendarApp' element={<MyCalendar/>} />
           <Route path='/Messages' element={<Messages/>} />
           <Route path='/Support' element={<Support/>} />
