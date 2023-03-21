@@ -16,7 +16,7 @@ function App() {
   return (
       <Router>
       <Navbar />
-      <div id="main" class="main">
+      <div id="main" className="main">
       <Routes>
           <Route exact path='/' element={<Home/>} />
           <Route exact path='/Groups' element={<Groups/>} />

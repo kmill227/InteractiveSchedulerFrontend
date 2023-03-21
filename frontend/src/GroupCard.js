@@ -48,7 +48,7 @@ export default function GroupCard() {
       container
       spacing={2}
       direction="row"
-      justify="flex-start"
+      justifyContent="flex-start"
       alignItems="flex-start"
   >
       {data.map(elem => (
