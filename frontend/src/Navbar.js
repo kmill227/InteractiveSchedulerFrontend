@@ -83,6 +83,9 @@ export default function PermanentDrawerLeft() {
                         <ListItemText primary="Messages" />
                         </ListItemButton>
                     </ListItem>
+        </List>
+        <Divider />
+        <List>
         <ListItem>
                         <ListItemIcon>
                             <HomeIcon />

@@ -10,6 +10,7 @@ import Login from './Login';
 import Navbar from './Navbar';
 import AddEvent from './AddEvent';
 import Groups from './Groups';
+import CreateGroup from './CreateGroup';
 
 function App() {
   return (
@@ -24,6 +25,8 @@ function App() {
           <Route path='/Support' element={<Support/>} />
           <Route path='/Login' element={<Login/>} />
           <Route path='/AddEvent' element={<AddEvent/>} />
+          <Route path='/Groups' element={<Groups/>} />
+          <Route path='/CreateGroup' element={<CreateGroup/>} />
       </Routes>
       </div>
       </Router>

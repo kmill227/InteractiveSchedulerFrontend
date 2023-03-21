@@ -39,3 +39,29 @@
 .main{
   margin-left:15%;
 }
+
+.groupCards, .groups, .groupButton {
+  margin: 10px;
+}
+
+.Cards {
+  background-color: blue;
+  text-align: center;
+}
+
+.cardButton {
+  align-items: center;
+}
+
+.groupHeader {
+  flex-direction: row;
+  margin: 10px;
+}
+
+.createGroup {
+  margin-left: 10px;
+}
+
+.searchGroup {
+  padding: 5px;;
+}
