@@ -12,6 +12,8 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import TextField from "@material-ui/core/TextField";
 import Navbar from './Navbar';
+import './Messages.css';
+import "./font/ChangaOne-Regular.ttf";
 
 
 export default function Messages() {
@@ -75,13 +77,14 @@ export default function Messages() {
   return (
     <>
     <Navbar />
-    <div style={{marginLeft:10}}>
-    <Grid item xs={12} sm={6} md={3}>
+    <div style={{marginLeft: 10}}>
+    <h1 id="messageHeader">Messages</h1>
+    <br/>
+    <Grid item xs={12} sm={6} md={3} id="sendMessage">
             <Button className="sendMessage" variant="contained" type="button" onClick={handleOpen}>Send Message</Button>
     </Grid>
-    <br/>
-    <h1>Messages</h1>
     <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+    <br/>
     
     {data.map(elem => (
       <ListItem alignItems="flex-start">

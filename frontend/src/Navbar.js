@@ -22,6 +22,9 @@ import logo from './images/smaller-long-logo.png';
 import './navbar.css';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import { Link } from '@material-ui/core';
+import HelpCenterIcon from '@mui/icons-material/HelpCenter';
+import LogoutIcon from '@mui/icons-material/Logout';
+import GroupsIcon from '@mui/icons-material/Groups';
 
 
 const drawerWidth = 240;
@@ -61,7 +64,7 @@ export default function PermanentDrawerLeft() {
           </ListItem>
           <ListItem id="listItem" button component={Link} href="/Groups">
             <ListItemIcon>
-              <PersonIcon />
+              <GroupsIcon />
             </ListItemIcon>
             <ListItemText primary="Groups" />
           </ListItem>
@@ -83,27 +86,21 @@ export default function PermanentDrawerLeft() {
             </ListItemIcon>
             <ListItemText primary="Notifications" />
           </ListItem>
-        </List>
-        <Divider />
-        <List>
         <ListItem id="listItem" button component={Link} href="/Account">
           <ListItemIcon>
-            <HomeIcon />
+            <PersonIcon />
           </ListItemIcon>
           <ListItemText primary="Account" />
         </ListItem>
         <ListItem id="listItem" button component={Link} href="/Support">
           <ListItemIcon>
-            <PersonIcon />
+            <HelpCenterIcon />
           </ListItemIcon>
           <ListItemText primary="Support" />
         </ListItem>
-      </List>
-      <Divider/>
-      <List>
         <ListItem id="listItem" button component={Link} href="/">
           <ListItemIcon>
-            <NotificationsActiveIcon />
+            <LogoutIcon/>
           </ListItemIcon>
           <ListItemText primary="Logout" />
         </ListItem>

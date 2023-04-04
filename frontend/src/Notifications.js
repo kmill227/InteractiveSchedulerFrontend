@@ -8,6 +8,8 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import { ListItemIcon } from '@material-ui/core';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
+import "./Notifications.css";
+import "./font/ChangaOne-Regular.ttf";
 
 
 
@@ -32,7 +34,7 @@ export default function() {
         <>
             <Navbar />
             <div style={{marginLeft:10}}>
-                <h1>Notifications</h1>
+                <h1 id="notiHeader">Notifications</h1>
                 <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
                     {data.map(elem => (
                         <ListItem alignItems="flex-start">

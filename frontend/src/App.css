@@ -14,7 +14,6 @@
 }
 
 .App-header {
-  background-color: #234b9c;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -38,6 +37,8 @@
 }
 .main{
   margin-left:15%;
+ 
+  
 }
 
 .groupCards, .groups, .groupButton {

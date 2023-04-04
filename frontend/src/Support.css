@@ -5,10 +5,11 @@
     
 }
 
-#homeHeader{
+#supportHeader{
     font-family: "ChangaOne";
     font-size: 300%;
     border-bottom-width: 2px;
     border-bottom-color: black;
     border-bottom-style: solid;
+   
 }

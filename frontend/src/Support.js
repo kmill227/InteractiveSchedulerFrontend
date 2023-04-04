@@ -1,12 +1,14 @@
 import React from 'react';
 import Navbar from './Navbar';
+import "./Support.css"
+import "./font/ChangaOne-Regular.ttf";
   
 const Support = () => {
   return (
     <>
     <Navbar />
     <div style={{marginLeft: 10}}>
-    <h1>Support</h1>
+    <h1 id="supportHeader">Support</h1>
     <h2>Frequently Asked Questions</h2>
     <p>Q: How do I create a Group?</p>
     <p>A: Navigate to the <a href='./Groups'>Groups</a> page, and click "Create Group", you'll then imput the information of your new group.</p>
@@ -23,7 +25,7 @@ const Support = () => {
     <br></br>
     <br></br>
     <h2>Need more help?</h2>
-    <p>Contact us at: Email coming soon</p>
+    <p>Contact us at: FlashFriendsHelp@gmail.com</p>
     </div>
     </>
   );
