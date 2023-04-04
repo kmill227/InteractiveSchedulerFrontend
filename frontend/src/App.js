@@ -11,24 +11,27 @@ import Navbar from './Navbar';
 import AddEvent from './AddEvent';
 import Groups from './Groups';
 import CreateGroup from './CreateGroup';
+import Account from './Account';
+import Notifications from './Notifications'
 
 function App() {
   return (
       <Router>
-      <Navbar />
-      <div id="main" className="main">
-      <Routes>
-          <Route exact path='/' element={<Home/>} />
-          <Route exact path='/Groups' element={<Groups/>} />
-          <Route path='/CalendarApp' element={<MyCalendar/>} />
-          <Route path='/Messages' element={<Messages/>} />
-          <Route path='/Support' element={<Support/>} />
-          <Route path='/Login' element={<Login/>} />
-          <Route path='/AddEvent' element={<AddEvent/>} />
-          <Route path='/Groups' element={<Groups/>} />
-          <Route path='/CreateGroup' element={<CreateGroup/>} />
-      </Routes>
-      </div>
+        <div className="main">
+          <Routes>
+            <Route exact path='/' element={<Login/>} />
+            <Route exact path='/Home' element={<Home/>} />
+            <Route exact path='/Groups' element={<Groups/>} />
+            <Route path='/CalendarApp' element={<MyCalendar/>} />
+            <Route path='/Messages' element={<Messages/>} />
+            <Route path='/Support' element={<Support/>} />
+            <Route path='/AddEvent' element={<AddEvent/>} />
+            <Route path='/Groups' element={<Groups/>} />
+            <Route path='/CreateGroup' element={<CreateGroup/>} />
+            <Route path='/Account' element={<Account/>} />
+            <Route path='/Notifications' element={<Notifications/>} />
+          </Routes>
+        </div>
       </Router>
   );
   }

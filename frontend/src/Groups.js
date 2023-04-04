@@ -10,12 +10,15 @@ import Button from '@mui/material/Button';
 import Grid from "@material-ui/core/Grid";
 import Box from '@mui/material/Box';
 import { Link } from 'react-router-dom';
+import Navbar from './Navbar';
 
 
 
 export default function Group(){
 
     return (
+      <>
+      <Navbar />
       <div className="groups">
         <div className="groupHeader">
         <Grid
@@ -36,6 +39,7 @@ export default function Group(){
             <GroupCard />
         </div>
         </div>
+        </>
     )
 
 }

@@ -12,6 +12,7 @@ import State, { GridList } from '@material-ui/core'
 import { Component } from "react";
 import FormLabel from '@mui/material/FormLabel';
 import axios from 'axios';
+import Navbar from './Navbar';
 
 
 
@@ -43,6 +44,8 @@ import axios from 'axios';
         .catch(error => console.log("Error detected: " + error))
     } 
         return (
+            <>
+            <Navbar />
         <Grid container spacing = {3} align="center" className="event-form">
             <Grid item xs={12} align="center">
             <TextField label="Description" value={description} onChange={(e) => setDescription(e.target.value)} />
@@ -71,6 +74,7 @@ import axios from 'axios';
                  <Button type="submit" onClick={handleSubmit} color="primary" variant='contained'>AddEvent</Button>
             </Grid>
         </Grid>
+        </>
     );
 }
     

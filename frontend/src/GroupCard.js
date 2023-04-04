@@ -16,7 +16,26 @@ export default function GroupCard() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [name, setName] = useState("");
+        const [description, setDescription] = useState("");
   
+    let handleSubmit = (e) => {
+
+    console.log({name});
+    let res = fetch('http://127.0.0.1:8000/api/groups', {
+        mode: 'no-cors',
+        method: "POST",
+        headers: {'Content-Type': 'multipart/form-data' },
+        body : JSON.stringify({
+            'name': name,
+            'description' : description,
+            'studentid': 1
+        }),
+        
+    });
+    res.then(response => response.text())   
+    .catch(error => console.log("Error detected: " + error))
+} 
   const style = {
     position: 'absolute',
     top: '50%',
@@ -29,15 +48,26 @@ export default function GroupCard() {
     p: 4,
     textAlign: 'center'
   };
+    const [mydata, setMyData] = useState([]);
     const [data, setData] = useState([]);
+    const studentid = 5;
   
     useEffect(() => {
       fetch('http://127.0.0.1:8000/api/groups')
         .then(response => response.json())
         .then(data => setData(data));
     }, []);
+
+    useEffect(() => {
+      fetch('http://127.0.0.1:8000/api/groups')
+        .then(response => response.json())
+        .then(mydata => setMyData(mydata));
+    }, []);
   
     return (
+      <div>
+      <br/>
+      <h3>My Groups</h3>
       <Grid
       container
       spacing={2}
@@ -45,17 +75,17 @@ export default function GroupCard() {
       justifyContent="flex-start"
       alignItems="flex-start"
   >
-      {data.map(elem => (
-          <Grid item xs={12} sm={6} md={3} key={data.indexOf(elem)}>
+      {mydata.map(myelem => (
+          <Grid item xs={12} sm={6} md={3} key={mydata.indexOf(myelem)}>
               <Card>
                   <CardHeader
-                      title={`${elem.name}`} variant="h5"
+                      title={`${myelem.name}`} variant="h5"
                   />
                   <CardContent>
-                    {elem.description}
+                    {myelem.description}
                   </CardContent>
       <CardActions className={"cardButton"}>
-        <Button size="small" onClick={handleOpen}>Join Group</Button>
+        <Button type="submit" onSubmit={handleSubmit} size="small" onClick={handleOpen}>Join Group</Button>
       </CardActions>
               </Card>
               <Modal
@@ -74,5 +104,44 @@ export default function GroupCard() {
            </Grid>
       ))}
   </Grid>
+  <br/>
+  <h3>All Groups</h3>
+  <Grid
+      container
+      spacing={2}
+      direction="row"
+      justifyContent="flex-start"
+      alignItems="flex-start"
+  >
+      {data.map(elem => (
+          <Grid item xs={12} sm={6} md={3} key={data.indexOf(elem)}>
+              <Card>
+                  <CardHeader
+                      title={`${elem.name}`} variant="h5"
+                  />
+                  <CardContent>
+                    {elem.description}
+                  </CardContent>
+      <CardActions className={"cardButton"}>
+        <Button type="submit" onSubmit={handleSubmit} size="small" onClick={handleOpen}>Join Group</Button>
+      </CardActions>
+              </Card>
+              <Modal
+    open={open}
+    onClose={handleClose}
+    aria-labelledby="modal-modal-title"
+    aria-describedby="modal-modal-description"
+  >
+    <Box sx={style}>
+      <Typography id="modal-modal-title" variant="h6" component="h2">
+       Joined Group!!
+      </Typography>
+      <Button type="button" onClick={handleClose} variant="contained">Close</Button>
+    </Box>
+  </Modal>
+           </Grid>
+      ))}
+  </Grid>
+  </div>
     );
 }

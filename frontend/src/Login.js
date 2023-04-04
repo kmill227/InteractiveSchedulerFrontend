@@ -10,6 +10,7 @@ import {
 
 
 const LoginPage = () => {
+
   const [checked, setChecked] = React.useState(true);
   const [userName, setUsername] = React.useState("");
   const [pwd, setPassword] = React.useState("");
@@ -19,7 +20,7 @@ const LoginPage = () => {
     setChecked(event.target.checked);
   };
 
-  let handleSubmit = (e) => {
+    let handleSubmit = (e) => {
     
       let res = fetch('http://127.0.0.1:8000/api/login', {
           method: "POST",
@@ -30,13 +31,13 @@ const LoginPage = () => {
             "studentId": studentId,
       }),
     
-});
-res.then(response => response.text())   
-.catch(error => console.log("Error detected: " + error))
+    });
+    res.then(response => response.text())   
+      .catch(error => console.log("Error detected: " + error))
 }
 
   return (
-    <div style={{ padding: 30 }}>
+    <div className='loginpage' style={{ padding: 30}}>
       <Paper>
         <Grid
           container
@@ -45,6 +46,7 @@ res.then(response => response.text())
           justifyContent={'center'}
           alignItems={'center'}
         >
+          <h3>Sign In</h3>
           <Grid item xs={12}>
             <TextField label="Username" value={userName} onChange={(e) => setUsername(e.target.value)}></TextField>
           </Grid>
@@ -65,7 +67,7 @@ res.then(response => response.text())
             />
           </Grid>
           <Grid item xs={12}>
-            <Button component="a" href="/" fullWidth> Login </Button>
+            <Button component="a" href="/Home" fullWidth> Login </Button>
           </Grid>
         </Grid>
       </Paper>

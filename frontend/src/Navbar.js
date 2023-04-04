@@ -20,13 +20,15 @@ import EmailIcon from '@mui/icons-material/Email';
 import Help from '@material-ui/icons/Help';
 import logo from './images/smaller-long-logo.png';
 import './navbar.css';
+import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
+import { Link } from '@material-ui/core';
 
 
 const drawerWidth = 240;
 
 export default function PermanentDrawerLeft() {
   return (
-    <Box sx={{ display: 'flex', }}>
+    <Box className = "navbar" sx={{ display: 'flex', }}>
       <CssBaseline />
       <AppBar
         position="fixed"
@@ -51,65 +53,67 @@ export default function PermanentDrawerLeft() {
         <Toolbar />
         <Divider />
         <List id="List">
-        <ListItem id="listItem">
-                        <ListItemIcon>
-                            <HomeIcon />
-                        </ListItemIcon>
-                        <ListItemButton component="a" href="/">
-                        <ListItemText primary="Home"/>
-                        </ListItemButton>
-                    </ListItem>
-                    <ListItem>
-                        <ListItemIcon>
-                            <PersonIcon />
-                        </ListItemIcon>
-                        <ListItemButton component="a" href="/Groups">
-                        <ListItemText primary="Groups" />
-                        </ListItemButton>
-                    </ListItem>
-                    <ListItem>
-                        <ListItemIcon>
-                            <CalendarMonthIcon />
-                        </ListItemIcon>
-                        <ListItemButton component="a" href="./CalendarApp">
-                        <ListItemText primary="Calendar" />
-                        </ListItemButton>
-                    </ListItem>
-                    <ListItem>
-                        <ListItemIcon>
-                            <EmailIcon />
-                        </ListItemIcon>
-                        <ListItemButton component="a" href="./Messages">
-                        <ListItemText primary="Messages" />
-                        </ListItemButton>
-                    </ListItem>
+          <ListItem id="listItem" button component={Link} href="/Home">
+            <ListItemIcon>
+              <HomeIcon />
+            </ListItemIcon>
+            <ListItemText primary="Home"/>
+          </ListItem>
+          <ListItem id="listItem" button component={Link} href="/Groups">
+            <ListItemIcon>
+              <PersonIcon />
+            </ListItemIcon>
+            <ListItemText primary="Groups" />
+          </ListItem>
+          <ListItem id="listItem" button component={Link} href="/CalendarApp">
+            <ListItemIcon>
+              <CalendarMonthIcon />
+            </ListItemIcon>
+            <ListItemText primary="Calendar" />
+          </ListItem>
+          <ListItem id="listItem" button component={Link} href="/Messages">
+            <ListItemIcon>
+              <EmailIcon />
+            </ListItemIcon>
+            <ListItemText primary="Messages" />
+          </ListItem>
+          <ListItem id="listItem" button component={Link} href="/Notifications">
+            <ListItemIcon>
+              <NotificationsActiveIcon />
+            </ListItemIcon>
+            <ListItemText primary="Notifications" />
+          </ListItem>
         </List>
         <Divider />
         <List>
-        <ListItem>
-                        <ListItemIcon>
-                            <HomeIcon />
-                        </ListItemIcon>
-                        <ListItemButton component="a" href="/Login">
-                        <ListItemText primary="Login" />
-                        </ListItemButton>
-                    </ListItem>
-                    <ListItem>
-                        <ListItemIcon>
-                            <PersonIcon />
-                        </ListItemIcon>
-                        <ListItemButton component="a" href="./Support">
-                        <ListItemText primary="Support" />
-                        </ListItemButton>
-                    </ListItem>
-                    </List>
+        <ListItem id="listItem" button component={Link} href="/Account">
+          <ListItemIcon>
+            <HomeIcon />
+          </ListItemIcon>
+          <ListItemText primary="Account" />
+        </ListItem>
+        <ListItem id="listItem" button component={Link} href="/Support">
+          <ListItemIcon>
+            <PersonIcon />
+          </ListItemIcon>
+          <ListItemText primary="Support" />
+        </ListItem>
+      </List>
+      <Divider/>
+      <List>
+        <ListItem id="listItem" button component={Link} href="/">
+          <ListItemIcon>
+            <NotificationsActiveIcon />
+          </ListItemIcon>
+          <ListItemText primary="Logout" />
+        </ListItem>
+      </List>
       </Drawer>
       <Box
         component="main"
         sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}
       >
         <Toolbar />
-        
       </Box>
     </Box>
   );

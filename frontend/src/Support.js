@@ -1,8 +1,11 @@
 import React from 'react';
+import Navbar from './Navbar';
   
 const Support = () => {
   return (
-    <div>
+    <>
+    <Navbar />
+    <div style={{marginLeft: 10}}>
     <h1>Support</h1>
     <h2>Frequently Asked Questions</h2>
     <p>Q: How do I create a Group?</p>
@@ -22,6 +25,7 @@ const Support = () => {
     <h2>Need more help?</h2>
     <p>Contact us at: Email coming soon</p>
     </div>
+    </>
   );
 };
   

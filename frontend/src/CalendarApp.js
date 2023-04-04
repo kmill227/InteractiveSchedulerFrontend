@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Modal from '@mui/material/Modal';
 import { render } from "react-dom";
-import { Calendar, dateFnsLocalizer } from "react-big-calendar";
+import { Calendar, dateFnsLocalizer } from 'react-big-calendar'
 import { format, parse, startOfWeek, getDay } from "date-fns";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import AddEvent from './AddEvent';
@@ -19,22 +19,43 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import State, { GridList } from '@material-ui/core'
 import { Component } from "react";
 import FormLabel from '@mui/material/FormLabel';
+import Navbar from './Navbar';
 
 
-const locales = {
-	"en-US": require("date-fns")
-};
-const localizer = dateFnsLocalizer({
-	format,
-	parse,
-	startOfWeek,
-	getDay,
-	locales
-});
+
 
  const MyCalendar = () => {
+	const locales = {
+		"en-US": require("date-fns")
+	};
+
+	const localizer = dateFnsLocalizer({
+		format,
+		parse,
+		startOfWeek,
+		getDay,
+		locales
+	});
+	const myevents = [
+		{
+			id: 0,
+			title: "training",
+			start: new Date(2023, 3, 27, 12, 0, 0),
+			end: new Date(2023, 3, 27, 13, 0, 0),
+			resourceId: 1
+		},
+		{
+			id: 1,
+			title: "late lunch",
+			start: new Date(2023, 4, 25, 14, 0, 0),
+			end: new Date(2023, 4, 25, 16, 30, 0),
+			resourceId: 2
+		}
+	]
+	  
     return(
 	<>
+	<Navbar />
     <div>
         
 		<div className="calendar">
@@ -45,9 +66,11 @@ const localizer = dateFnsLocalizer({
         </div>
 			<div>
 				<Calendar
+					events={myevents}
 					localizer={localizer}
 					defaultDate={new Date()}
-					style={{ height: 700 }}
+					style={{ height: 700 }
+				}
 				/>
 			</div>
 		</div>
