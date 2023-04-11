@@ -14,8 +14,7 @@ import BurgerMenu from './components/BurgerNav';
 
         console.log({name});
         let res = fetch('http://127.0.0.1:8000/api/groups', {
-            mode: 'no-cors',
-            method: "POST",
+            method: "PUT",
             headers: {'Content-Type': 'multipart/form-data' },
             body : JSON.stringify({
                 'name': name,

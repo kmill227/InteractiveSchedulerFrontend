@@ -17,24 +17,34 @@ export default function GroupCard() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [name, setName] = useState("");
-        const [description, setDescription] = useState("");
-  
-    let handleSubmit = (e) => {
+  const [description, setDescription] = useState("");
+  const studentid = 1;
 
-    console.log({name});
-    let res = fetch('http://127.0.0.1:8000/api/groups', {
-        mode: 'no-cors',
-        method: "POST",
+  let handleSubmit = (e) => {
+
+  console.log({name});
+   let res = fetch('http://127.0.0.1:8000/api/groups', {
+        method: "PUT",
         headers: {'Content-Type': 'multipart/form-data' },
         body : JSON.stringify({
             'name': name,
             'description' : description,
-            'studentid': 1
         }),
         
     });
     res.then(response => response.text())   
-    .catch(error => console.log("Error detected: " + error))
+  .catch(error => console.log("Error detected: " + error))
+
+  let res2 = fetch('http://127.0.0.1:8000/api/groups', {
+        method: "PUT",
+        headers: {'Content-Type': 'multipart/form-data' },
+        body : JSON.stringify({
+            'studentid': studentid,
+        }),
+        
+    });
+    res2.then(response => response.text())   
+  .catch(error => console.log("Error detected: " + error))
 } 
   const style = {
     position: 'absolute',
@@ -50,7 +60,6 @@ export default function GroupCard() {
   };
     const [mydata, setMyData] = useState([]);
     const [data, setData] = useState([]);
-    const studentid = 5;
   
     useEffect(() => {
       fetch('http://127.0.0.1:8000/api/groups')
@@ -58,12 +67,24 @@ export default function GroupCard() {
         .then(data => setData(data));
     }, []);
 
-    useEffect(() => {
-      fetch('http://127.0.0.1:8000/api/groups')
-        .then(response => response.json())
-        .then(mydata => setMyData(mydata));
-    }, []);
-  
+      const apiUrl = 'http://127.0.0.1:8000/api/groups';
+      const params = {studentid: 1};
+      const url = new URL(apiUrl);
+      Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
+
+      let resp = fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+
+      resp.then(response => response.json())
+      .then(mydata => setMyData(mydata))
+      .catch(error => {
+        console.error('Error:', error);
+      });
+
     return (
       <div>
       <br/>
@@ -84,9 +105,6 @@ export default function GroupCard() {
                   <CardContent>
                     {myelem.description}
                   </CardContent>
-      <CardActions className={"cardButton"}>
-        <Button type="submit" onSubmit={handleSubmit} size="small" onClick={handleOpen}>Join Group</Button>
-      </CardActions>
               </Card>
               <Modal
     open={open}

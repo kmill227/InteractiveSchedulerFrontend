@@ -13,6 +13,7 @@ import Groups from './Groups';
 import CreateGroup from './CreateGroup';
 import Account from './Account';
 import Notifications from './Notifications'
+import CreateAccount from './CreateAccount';
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
             <Route path='/CreateGroup' element={<CreateGroup/>} />
             <Route path='/Account' element={<Account/>} />
             <Route path='/Notifications' element={<Notifications/>} />
+            <Route path='/CreateAccount' element={<CreateAccount/>} />
           </Routes>
         </div>
       </Router>

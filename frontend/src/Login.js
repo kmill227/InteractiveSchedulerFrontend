@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Checkbox,
   Grid,
@@ -7,6 +7,8 @@ import {
   Paper,
   Button
 } from '@material-ui/core';
+import Cookies from 'universal-cookie';
+import jwt from 'jwt-decode';
 
 
 const LoginPage = () => {
@@ -19,6 +21,12 @@ const LoginPage = () => {
   const handleChange = (event) => {
     setChecked(event.target.checked);
   };
+
+  const cookies = new Cookies();
+  const [user,setUser] = useState();
+
+
+
 
     let handleSubmit = (e) => {
     
@@ -68,6 +76,9 @@ const LoginPage = () => {
           </Grid>
           <Grid item xs={12}>
             <Button component="a" href="/Home" fullWidth> Login </Button>
+          </Grid>
+          <Grid item xs={12}>
+            <Button component="a" href="/CreateAccount" fullWidth>New User </Button>
           </Grid>
         </Grid>
       </Paper>
