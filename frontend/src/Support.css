@@ -2,7 +2,9 @@
     font-family: "ChangaOne";
     src: local("ChangaOne"),
     url("./font/ChangaOne-Regular.ttf") format("truetype");
-    
+    font-family: "Raleway";
+    src: local("Raleway"),
+    url("./font/Raleway-Regular.ttf") format("truetype");
 }
 
 #supportHeader{
@@ -12,4 +14,8 @@
     border-bottom-color: black;
     border-bottom-style: solid;
    
+}
+
+#Support_mainContent{
+    font-family: "Raleway";
 }

@@ -1,0 +1,24 @@
+a:link { text-decoration: none; }
+
+
+a:visited { text-decoration: none; }
+
+
+a:hover { text-decoration: none; 
+background-color: #063970;
+color: white;
+}
+
+
+a:active { text-decoration: none; }
+
+a {
+    color: white;
+    display: inline-block;
+    padding-top: 0.2em;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-bottom: 0.2em;
+    transition: background-color 0.5s ease;
+    border-radius:20%;
+}

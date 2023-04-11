@@ -10,6 +10,8 @@ import { ListItemIcon } from '@material-ui/core';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import "./Notifications.css";
 import "./font/ChangaOne-Regular.ttf";
+import BurgerMenu from './components/BurgerNav';
+
 
 
 
@@ -23,7 +25,8 @@ export default function() {
 		{
             notificationcontent: "Meeting Canceled"
 		}
-	]
+    ]
+   
     {/*useEffect(() => {
         fetch('http://127.0.0.1:8000/api/notifications')
           .then(response => response.json())
@@ -32,10 +35,12 @@ export default function() {
 
     return (
         <>
-            <Navbar />
-            <div style={{marginLeft:10}}>
+            
+            { <div>
+                <BurgerMenu/>
+                <div id="notiPage"> 
                 <h1 id="notiHeader">Notifications</h1>
-                <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+                { <List className= "NotificationList" sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
                     {data.map(elem => (
                         <ListItem alignItems="flex-start">
                             <ListItemIcon>
@@ -46,8 +51,9 @@ export default function() {
                             />
                         </ListItem>
                     ))}
-                </List>
-            </div>
+                </List> }
+                </div>
+            </div>}
         </>
     )
 }

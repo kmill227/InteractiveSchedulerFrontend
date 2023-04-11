@@ -11,7 +11,7 @@ import Grid from "@material-ui/core/Grid";
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import TextField from "@material-ui/core/TextField";
-import Navbar from './Navbar';
+import BurgerMenu from './components/BurgerNav';
 import './Messages.css';
 import "./font/ChangaOne-Regular.ttf";
 
@@ -76,9 +76,10 @@ export default function Messages() {
 
   return (
     <>
-    <Navbar />
+    <BurgerMenu />
     <div style={{marginLeft: 10}}>
     <h1 id="messageHeader">Messages</h1>
+    <div id="Messages_mainContent">
     <br/>
     <Grid item xs={12} sm={6} md={3} id="sendMessage">
             <Button className="sendMessage" variant="contained" type="button" onClick={handleOpen}>Send Message</Button>
@@ -121,7 +122,7 @@ export default function Messages() {
             </Grid>
         </Grid>
   </Box>
-</Modal>
+</Modal></div>
       </div>
       </>
   )

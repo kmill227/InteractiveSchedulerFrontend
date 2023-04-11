@@ -14,9 +14,11 @@ import CreateGroup from './CreateGroup';
 import Account from './Account';
 import Notifications from './Notifications'
 
+
 function App() {
   return (
-      <Router>
+    <div>
+      {<Router>
         <div className="main">
           <Routes>
             <Route exact path='/' element={<Login/>} />
@@ -33,6 +35,9 @@ function App() {
           </Routes>
         </div>
       </Router>
+       }
+      
+      </div>
   );
   }
     

@@ -2,7 +2,7 @@ import React from "react";
 import './CalendarApp';
 import MyCalendar from "./CalendarApp";
 import './Home.css'
-import Navbar from './Navbar';
+import BurgerMenu from './components/BurgerNav';
 import "./font/ChangaOne-Regular.ttf";
 
 
@@ -10,9 +10,10 @@ export default function(){
 
     return (
         <div id="backgroundColor">
-        <Navbar/>
+        <BurgerMenu/>
         <div id="homePage" style={{marginLeft: 10}}>
         <h1 id="homeHeader">Home</h1>
+        <div id="Home_mainContent">
         <h2>Today's Events:</h2>
         <p id= "Event">Smash Bros @ 5:30PM - Room 206</p>
         <br></br>
@@ -23,7 +24,8 @@ export default function(){
         <br></br>
         <h2>Announcements:</h2>
         <p id="Announcment">Today Jazz Club will be meeting @ 7:30PM in the Lounge. There will be snacks and fun to be had!</p>
-        <p>Email jazzguy@kent.edu for more info or join the Jazz Club <a href="/">Here.</a></p>
+        <p>Email jazzguy@kent.edu for more info.</p>
+        </div>
         </div>
         </div>
     );

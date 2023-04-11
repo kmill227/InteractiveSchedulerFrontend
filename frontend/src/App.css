@@ -35,11 +35,10 @@
     transform: rotate(360deg);
   }
 }
-.main{
+/*.main{
   margin-left:15%;
  
-  
-}
+} */
 
 .groupCards, .groups, .groupButton {
   margin: 10px;
@@ -68,6 +67,7 @@
 }
 
 .notifications {
+  
   margin-left: 2%;
 }
 

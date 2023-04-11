@@ -19,7 +19,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import State, { GridList } from '@material-ui/core'
 import { Component } from "react";
 import FormLabel from '@mui/material/FormLabel';
-import Navbar from './Navbar';
+import BurgerMenu from './components/BurgerNav';
 
 
 
@@ -55,7 +55,7 @@ import Navbar from './Navbar';
 	  
     return(
 	<>
-	<Navbar />
+	<BurgerMenu />
     <div>
         
 		<div className="calendar">
@@ -69,7 +69,7 @@ import Navbar from './Navbar';
 					events={myevents}
 					localizer={localizer}
 					defaultDate={new Date()}
-					style={{ height: 700 }
+					style={{ height: 700	}
 				}
 				/>
 			</div>

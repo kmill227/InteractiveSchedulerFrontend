@@ -1,17 +1,18 @@
 import React from 'react';
-import Navbar from './Navbar';
 import "./Support.css"
 import "./font/ChangaOne-Regular.ttf";
+import BurgerMenu from './components/BurgerNav';
   
 const Support = () => {
   return (
     <>
-    <Navbar />
+    <BurgerMenu />
     <div style={{marginLeft: 10}}>
     <h1 id="supportHeader">Support</h1>
+    <div id="Support_mainContent">
     <h2>Frequently Asked Questions</h2>
     <p>Q: How do I create a Group?</p>
-    <p>A: Navigate to the <a href='./Groups'>Groups</a> page, and click "Create Group", you'll then imput the information of your new group.</p>
+    <p>A: Navigate to the Groups page, and click "Create Group", you'll then imput the information of your new group.</p>
     <br></br>
     <br></br>
     <p>Q: What are "Announcements"?</p>
@@ -26,6 +27,7 @@ const Support = () => {
     <br></br>
     <h2>Need more help?</h2>
     <p>Contact us at: FlashFriendsHelp@gmail.com</p>
+    </div>
     </div>
     </>
   );

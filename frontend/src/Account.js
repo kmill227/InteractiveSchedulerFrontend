@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Navbar from './Navbar';
+import BurgerMenu from './components/BurgerNav';
 import "./Account.css";
 import "./font/ChangaOne-Regular.ttf";
 
@@ -8,7 +8,7 @@ export default function() {
 
     return (
         <>
-        <Navbar />
+        <BurgerMenu/>
         <div style={{marginLeft: 10}}>
         <h1 id="accountHeader">Account Page Coming Soon</h1>
         </div>

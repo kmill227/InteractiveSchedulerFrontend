@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
-import Navbar from './Navbar';
+import BurgerMenu from './components/BurgerNav';
 
 
     function CreateGroup() {
@@ -28,7 +28,7 @@ import Navbar from './Navbar';
     } 
         return (
             <>
-            <Navbar />
+            <BurgerMenu />
         <Grid container spacing = {3} align="center" className="event-form">
             <Grid item xs={12} align="center">
                 <TextField label="Group Name" value={name} onChange={(e) => setName(e.target.value)} />

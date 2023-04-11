@@ -2,6 +2,9 @@
     font-family: "ChangaOne";
     src: local("ChangaOne"),
     url("./font/ChangaOne-Regular.ttf") format("truetype");
+    font-family: "Raleway";
+    src: local("Raleway"),
+    url("./font/Raleway-Regular.ttf") format("truetype");
     
 }
 
@@ -11,4 +14,8 @@
     border-bottom-width: 2px;
     border-bottom-color: black;
     border-bottom-style: solid;
+}
+
+#Home_mainContent{
+font-family: "Raleway";
 }
