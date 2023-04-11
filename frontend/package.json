@@ -17,7 +17,6 @@
     "bootstrap": "^5.2.3",
     "cors": "^2.8.5",
     "dayjs": "^1.11.7",
-    "jwt-decode": "^3.1.2",
     "react": "^18.2.0",
     "react-auth-kit": "^2.10.0",
     "react-big-calendar": "^1.6.8",
@@ -29,11 +28,7 @@
     "react-mui-scheduler": "^2.0.4",
     "react-router-dom": "^6.8.2",
     "react-scripts": "5.0.1",
-<<<<<<< Updated upstream
     "styled-components": "^5.3.9",
-=======
-    "universal-cookie": "^4.0.4",
->>>>>>> Stashed changes
     "web-vitals": "^2.1.4"
   },
   "scripts": {
