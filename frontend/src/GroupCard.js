@@ -10,6 +10,7 @@ import Modal from '@mui/material/Modal';
 import { CardHeader } from '@material-ui/core';
 import Grid from "@material-ui/core/Grid";
 import { useState, useEffect } from 'react';
+import BurgerMenu from './components/BurgerNav';
 
 
 export default function GroupCard() {
@@ -23,8 +24,7 @@ export default function GroupCard() {
 
     console.log({name});
     let res = fetch('http://127.0.0.1:8000/api/groups', {
-        mode: 'no-cors',
-        method: "POST",
+        method: "PUT",
         headers: {'Content-Type': 'multipart/form-data' },
         body : JSON.stringify({
             'name': name,
@@ -50,7 +50,6 @@ export default function GroupCard() {
   };
     const [mydata, setMyData] = useState([]);
     const [data, setData] = useState([]);
-    const studentid = 5;
   
     useEffect(() => {
       fetch('http://127.0.0.1:8000/api/groups')
@@ -58,11 +57,23 @@ export default function GroupCard() {
         .then(data => setData(data));
     }, []);
 
-    useEffect(() => {
-      fetch('http://127.0.0.1:8000/api/groups')
-        .then(response => response.json())
-        .then(mydata => setMyData(mydata));
-    }, []);
+    const apiUrl = 'http://127.0.0.1:8000/api/groups';
+      const params = {studentid: 1};
+      const url = new URL(apiUrl);
+      Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
+
+      let resp = fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+
+      resp.then(response => response.json())
+      .then(mydata => setMyData(mydata))
+      .catch(error => {
+        console.error('Error:', error);
+      });
   
     return (
       <div>
