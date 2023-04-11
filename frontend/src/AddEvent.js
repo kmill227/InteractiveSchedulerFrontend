@@ -12,7 +12,7 @@ import State, { GridList } from '@material-ui/core'
 import { Component } from "react";
 import FormLabel from '@mui/material/FormLabel';
 import axios from 'axios';
-import Navbar from './Navbar';
+import BurgerMenu from './components/BurgerNav';
 
 
 
@@ -45,7 +45,7 @@ import Navbar from './Navbar';
     } 
         return (
             <>
-            <Navbar />
+            <BurgerMenu />
         <Grid container spacing = {3} align="center" className="event-form">
             <Grid item xs={12} align="center">
             <TextField label="Description" value={description} onChange={(e) => setDescription(e.target.value)} />
@@ -68,10 +68,10 @@ import Navbar from './Navbar';
                 </FormControl>
             </Grid>
             <Grid item xs={12} align="center">
-                <TextField label="Acces Level" type="number" value={accesslevel} onChange={(e) => setAccessLevel(e.target.value)} InputProps={{ inputProps: { min: 0, max: 5 } }} />
+                <TextField label="Access Level" type="number" value={accesslevel} onChange={(e) => setAccessLevel(e.target.value)} InputProps={{ inputProps: { min: 0, max: 5 } }} />
             </Grid>
             <Grid item xs={12}>
-                 <Button type="submit" onClick={handleSubmit} color="primary" variant='contained'>AddEvent</Button>
+                 <Button type="submit" onClick={handleSubmit} color="primary" variant='contained'>Add Event</Button>
             </Grid>
         </Grid>
         </>

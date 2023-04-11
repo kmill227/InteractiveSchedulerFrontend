@@ -29,7 +29,9 @@ export default function Group(){
           
             <Grid item xs={6} sm={6}  className="searchGroup">
               <TextField className="SearchText" type="text" placeholder='Search Groups' variant="outlined" size="small"/>
-              <Button className="groupButton" variant="contained" type="search">Search</Button>
+              </Grid>
+            <Grid item xs={6} sm={6}  className="searchGroup">
+            <Button className="groupButton" variant="contained" type="search">Search</Button>
             </Grid>
             <Grid item xs={12} sm={6} md={3}>
             <Button className="createGroup" variant="contained" type="button" as={Link} to="/CreateGroup">Create Group</Button>
