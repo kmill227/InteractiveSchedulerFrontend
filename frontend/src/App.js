@@ -7,7 +7,6 @@ import MyCalendar from './CalendarApp';
 import Messages from './Messages';
 import Support from './Support';
 import Login from './Login';
-import Navbar from './Navbar';
 import AddEvent from './AddEvent';
 import Groups from './Groups';
 import CreateGroup from './CreateGroup';

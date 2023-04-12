@@ -60,6 +60,8 @@ import BurgerMenu from './components/BurgerNav';
         
 		<div className="calendar">
             <div style={{marginBottom: "20px"}}>
+				<p></p>
+				<p></p>
         <Button style={{marginLeft: "20px"}}variant="contained" as={Link} to="/AddEvent">
             Add Event
         </Button>

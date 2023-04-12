@@ -71,7 +71,7 @@ export default function(){
         <div id="Home_mainContent">
         <h2>Today's Events:</h2>
         <p>
-        <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+        <List sx={{ width: '100%', maxWidth: 360}}>
     <br/>
     {data.map(elem => (
       <ListItem alignItems="flex-start">
@@ -85,7 +85,7 @@ export default function(){
         </p>
         <h2>Upcoming Events:</h2>
         <p>
-            <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+            <List sx={{ width: '100%', maxWidth: 360}}>
             <br/>
                 {weekData.map(elemWeek => (
                     <ListItem alignItems="flex-start">

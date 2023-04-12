@@ -40,7 +40,7 @@ export default function() {
                 <BurgerMenu/>
                 <div id="notiPage"> 
                 <h1 id="notiHeader">Notifications</h1>
-                { <List className= "NotificationList" sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+                { <List className= "NotificationList" sx={{ width: '100%', maxWidth: 360}}>
                     {data.map(elem => (
                         <ListItem alignItems="flex-start">
                             <ListItemIcon>

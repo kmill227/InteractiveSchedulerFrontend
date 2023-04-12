@@ -14,6 +14,7 @@ import TextField from "@material-ui/core/TextField";
 import BurgerMenu from './components/BurgerNav';
 import './Messages.css';
 import "./font/ChangaOne-Regular.ttf";
+import "./font/Raleway-Regular.ttf";
 
 
 export default function Messages() {
@@ -79,15 +80,14 @@ export default function Messages() {
     <BurgerMenu />
     <div style={{marginLeft: 10}}>
     <h1 id="messageHeader">Messages</h1>
-    <div id="Messages_mainContent">
     <br/>
     <Grid item xs={12} sm={6} md={3} id="sendMessage">
             <Button className="sendMessage" variant="contained" type="button" onClick={handleOpen}>Send Message</Button>
     </Grid>
-    <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+    <List sx={{ width: '100%' }}>
     <br/>
-    
     {data.map(elem => (
+      <div className="lineForMessage">
       <ListItem alignItems="flex-start">
         <ListItemIcon>
           <EmailIcon />
@@ -98,11 +98,14 @@ export default function Messages() {
             <React.Fragment>
               {elem.msgcontent}
             </React.Fragment>
+            
           }
         />
       </ListItem>
-      ))}
+      </div>))}
       </List>
+
+      
 <Modal
   open={open}
   onClose={handleClose}
@@ -123,7 +126,6 @@ export default function Messages() {
         </Grid>
   </Box>
 </Modal></div>
-      </div>
       </>
   )
         };
