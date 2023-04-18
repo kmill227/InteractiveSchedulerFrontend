@@ -31,19 +31,18 @@ const LoginPage = () => {
       }
       fetch('http://127.0.0.1:8000/api/login', {
           method: "POST",
-          headers: {'Content-Type': 'multipart/form-data' },
+          headers: {'Content-Type': 'application/json' },
           body : JSON.stringify({
             "userName": userName,
             "pwd": pwd,
       }),
     
     })
-      .then(response => response.json())
-      .then(data => {
-       if (data.headers.get('authenticated') === 'true') {
+      .then(response => {
+        console.log(response.headers)
+    if (response.headers.get('authenticated') === 'True') {
       // Create a cookie that expires in 1 hour
       const expires = new Date(Date.now() + 3600000);
-      document.cookie = `auth_token=${data.token}; expires=${expires.toUTCString()}; path=/`;
       // Redirect the user to the home page
       window.location.href = "/Home";
     } else {
@@ -66,7 +65,7 @@ const LoginPage = () => {
         >
           <h3>Sign In</h3>
           <Grid item xs={12}>
-            <TextField label="Username" required ={true} value={userName} onChange={(e) => setUserName(e.target.value)} type='email'></TextField>
+            <TextField label="Username" required ={true} value={userName} onChange={(e) => setUserName(e.target.value)}></TextField>
           </Grid>
           <Grid item xs={12}>
             <TextField label="Password" required ={true} type='password' value={pwd} onChange={(e) => setPassword(e.target.value)} InputProps={{
