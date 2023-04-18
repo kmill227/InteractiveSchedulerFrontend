@@ -1,7 +1,6 @@
 import React from "react";
 import './CalendarApp';
 import MyCalendar from "./CalendarApp";
-import './Home.css'
 import BurgerMenu from './components/BurgerNav';
 import "./font/ChangaOne-Regular.ttf";
 import List from '@mui/material/List';

@@ -2,13 +2,11 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import Grid from "@material-ui/core/Grid";
 import { useState, useEffect } from 'react';
-import Navbar from './Navbar';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import { ListItemIcon } from '@material-ui/core';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
-import "./Notifications.css";
 import "./font/ChangaOne-Regular.ttf";
 import BurgerMenu from './components/BurgerNav';
 

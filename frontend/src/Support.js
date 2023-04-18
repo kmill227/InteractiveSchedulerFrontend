@@ -1,5 +1,4 @@
 import React from 'react';
-import "./Support.css"
 import "./font/ChangaOne-Regular.ttf";
 import BurgerMenu from './components/BurgerNav';
   

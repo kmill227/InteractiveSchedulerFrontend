@@ -14,9 +14,6 @@
 }
 
 @font-face{
-  font-family: "ChangaOne";
-  src: local("ChangaOne"),
-  url("./font/ChangaOne-Regular.ttf") format("truetype");
   font-family: "Raleway";
   src: local("Raleway"),
   url("./font/Raleway-Regular.ttf") format("truetype");
@@ -25,6 +22,11 @@
   url("./font/Raleway-VariableFont_wght.ttf");
 }
 
+@font-face{
+font-family: "ChangaOne";
+src: local("ChangaOne"),
+url("./font/ChangaOne-Regular.ttf") format("truetype");
+}
 .App-header {
   min-height: 100vh;
   display: flex;
@@ -96,4 +98,87 @@ margin-left: 5%;
 
 #groupTitle{
   font-family:"ChangaOne";
+}
+
+#homeHeader{
+  font-family: "ChangaOne";
+  font-size: 300%;
+  border-bottom-width: 2px;
+  border-bottom-color: black;
+  border-bottom-style: solid;
+  margin-left: 1%;
+}
+
+#Home_mainContent{
+  font-family: "Raleway";
+  margin-left: 1%;
+}
+.upcomingEvents{
+  font-family: "Raleway";
+  font-size: 300%;
+}
+
+
+#messageHeader{
+  font-family: "ChangaOne";
+  font-size: 300%;
+  border-bottom-width: 2px;
+  border-bottom-color: black;
+  border-bottom-style: solid;
+ 
+}
+#sendMessage{
+  margin-left:1%;
+}
+#msgcontent{
+  font-family: "Raleway";
+}
+.lineForMessage{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border-bottom-width: 2px;
+  border-bottom-color: black;
+  border-bottom-style: solid;
+  width: 100%;
+}
+#notiHeader{
+  font-family: "ChangaOne";
+  font-size: 300%;
+  border-bottom-width: 2px;
+  border-bottom-color: black;
+  border-bottom-style: solid;
+}
+
+#notiPage{
+  margin-left: 1%;
+}
+
+.NotificationList{
+  z-index:2;
+}
+
+#supportHeader{
+  font-family: "ChangaOne";
+  font-size: 300%;
+  border-bottom-width: 2px;
+  border-bottom-color: black;
+  border-bottom-style: solid;
+ 
+}
+
+#Support_mainContent{
+  font-family: "Raleway";
+}
+
+#groupTitle{
+  font-family: "ChangaOne";
+}
+
+#accountHeader{
+  font-family: "ChangaOne";
+  font-size: 300%;
+  border-bottom-width: 2px;
+  border-bottom-color: black;
+  border-bottom-style: solid;
 }

@@ -12,7 +12,8 @@ import Groups from './Groups';
 import CreateGroup from './CreateGroup';
 import Account from './Account';
 import Notifications from './Notifications'
-
+import "./font/ChangaOne-Regular.ttf";
+import "./font/Raleway-Regular.ttf";
 
 function App() {
   return (

@@ -12,7 +12,6 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import TextField from "@material-ui/core/TextField";
 import BurgerMenu from './components/BurgerNav';
-import './Messages.css';
 import "./font/ChangaOne-Regular.ttf";
 import { useNavigate } from 'react-router-dom';
 import "./font/Raleway-Regular.ttf";
