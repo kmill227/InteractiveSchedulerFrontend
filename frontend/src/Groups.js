@@ -11,33 +11,29 @@ import Grid from "@material-ui/core/Grid";
 import Box from '@mui/material/Box';
 import { Link } from 'react-router-dom';
 import BurgerMenu from './components/BurgerNav';
-import './Groups.css';
+
 
 
 export default function Group(){
+  const [name,setName] = useState('');
+  const [data, setData] = useState([]);
+  let handleSubmit = (e) => {
 
+    let resp = fetch('http://127.0.0.1:8000/api/groups', {
+        method: "GET",  
+    });
+    resp.then(response => response.json())
+    .then(data => setData(data))
+    .catch(error => {
+      console.error('Error:', error);
+    });
+
+} 
     return (
       <>
       <BurgerMenu />
       <div className="groups">
-        <div className="groupHeader">
-        <Grid
-          container
-          spacing={2}
-          direction="row"
-        >       
-          
-            <Grid item xs={6} sm={6}  className="searchGroup">
-              <TextField className="SearchText" type="text" placeholder='Search Groups' variant="outlined" size="small"/>
-              </Grid>
-            <Grid item xs={6} sm={6}  className="searchGroup">
-            <Button className="groupButton" variant="contained" type="search">Search</Button>
-            </Grid>
-            <Grid item xs={12} sm={6} md={3}>
-            <Button className="createGroup" variant="contained" type="button" as={Link} to="/CreateGroup">Create Group</Button>
-          </Grid>
-        </Grid>
-      </div>
+        
       <div className={"groupCards"}>
             <GroupCard />
         </div>
