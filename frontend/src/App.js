@@ -10,6 +10,7 @@ import Login from './Login';
 import AddEvent from './AddEvent';
 import Groups from './Groups';
 import CreateGroup from './CreateGroup';
+import CreateAccount from './CreateAccount';
 import Account from './Account';
 import Notifications from './Notifications'
 import "./font/ChangaOne-Regular.ttf";
@@ -32,6 +33,7 @@ function App() {
             <Route path='/CreateGroup' element={<CreateGroup/>} />
             <Route path='/Account' element={<Account/>} />
             <Route path='/Notifications' element={<Notifications/>} />
+            <Route path='/CreateAccount' element={<CreateAccount/>} />
           </Routes>
         </div>
       </Router>
