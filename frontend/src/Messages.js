@@ -17,8 +17,6 @@ import "./font/ChangaOne-Regular.ttf";
 import { useNavigate } from 'react-router-dom';
 import "./font/Raleway-Regular.ttf";
 import "./font/Raleway-VariableFont_wght.ttf"
-import { useNavigate } from 'react-router-dom';
-import "./font/Raleway-Regular.ttf";
 
 
 
