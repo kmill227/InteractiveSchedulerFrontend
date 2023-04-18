@@ -14,11 +14,9 @@ import TextField from "@material-ui/core/TextField";
 import BurgerMenu from './components/BurgerNav';
 import './Messages.css';
 import "./font/ChangaOne-Regular.ttf";
-<<<<<<< HEAD
 import { useNavigate } from 'react-router-dom';
-=======
 import "./font/Raleway-Regular.ttf";
->>>>>>> 7a89df7f50a1ccc5ff0f06e5d09b6a15609174be
+
 
 
 export default function Messages() {
