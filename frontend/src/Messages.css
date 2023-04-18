@@ -19,6 +19,15 @@
 #sendMessage{
     margin-left:1%;
 }
-#Messages_mainContent{
+#msgcontent{
     font-family: "Raleway";
+}
+.lineForMessage{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border-bottom-width: 2px;
+    border-bottom-color: black;
+    border-bottom-style: solid;
+    width: 100%;
 }

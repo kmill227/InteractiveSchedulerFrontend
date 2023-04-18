@@ -14,7 +14,11 @@ import TextField from "@material-ui/core/TextField";
 import BurgerMenu from './components/BurgerNav';
 import './Messages.css';
 import "./font/ChangaOne-Regular.ttf";
+<<<<<<< HEAD
 import { useNavigate } from 'react-router-dom';
+=======
+import "./font/Raleway-Regular.ttf";
+>>>>>>> 7a89df7f50a1ccc5ff0f06e5d09b6a15609174be
 
 
 export default function Messages() {
@@ -82,15 +86,14 @@ let url = new URL('http://127.0.0.1:8000/api/messages');
     <BurgerMenu />
     <div style={{marginLeft: 10}}>
     <h1 id="messageHeader">Messages</h1>
-    <div id="Messages_mainContent">
     <br/>
     <Grid item xs={12} sm={6} md={3} id="sendMessage">
             <Button className="sendMessage" variant="contained" type="button" onClick={handleOpen}>Send Message</Button>
     </Grid>
-    <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+    <List sx={{ width: '100%' }}>
     <br/>
-    
     {data.map(elem => (
+      <div className="lineForMessage">
       <ListItem alignItems="flex-start">
         <ListItemIcon>
           <EmailIcon />
@@ -101,11 +104,14 @@ let url = new URL('http://127.0.0.1:8000/api/messages');
             <React.Fragment>
               {elem.msgcontent}
             </React.Fragment>
+            
           }
         />
       </ListItem>
-      ))}
+      </div>))}
       </List>
+
+      
 <Modal
   open={open}
   onClose={handleClose}
@@ -126,7 +132,6 @@ let url = new URL('http://127.0.0.1:8000/api/messages');
         </Grid>
   </Box>
 </Modal></div>
-      </div>
       </>
   )
         };
