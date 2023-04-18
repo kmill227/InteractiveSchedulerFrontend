@@ -91,7 +91,7 @@ let url = new URL('http://127.0.0.1:8000/api/messages');
     </Grid>
     <List sx={{ width: '100%' }}>
     <br/>
-    {data.map(elem => (
+    {dataMsg.map(elem => (
       <div className="lineForMessage">
       <ListItem alignItems="flex-start">
         <ListItemIcon>
