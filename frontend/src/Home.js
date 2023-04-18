@@ -32,7 +32,7 @@ export default function(){
     const params = {studentid: 1, timelt: tomorrow, timegt: yesterday};
     let url = new URL(apiUrl);
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
-
+  
     let resp = fetch(url, {
       method: 'GET',
       headers: {
@@ -45,6 +45,7 @@ export default function(){
     .catch(error => {
       console.error('Error:', error);
     });
+  
 
     let urlWeek = new URL(apiUrl);
     const paramsWeek = {studentid: 1, timelt: nextWeek, timegt: yesterday};

@@ -14,9 +14,11 @@ import TextField from "@material-ui/core/TextField";
 import BurgerMenu from './components/BurgerNav';
 import './Messages.css';
 import "./font/ChangaOne-Regular.ttf";
+import { useNavigate } from 'react-router-dom';
 
 
 export default function Messages() {
+  let navigate = useNavigate();
   const style = {
     position: 'absolute',
     top: '50%',
@@ -28,7 +30,7 @@ export default function Messages() {
     boxShadow: 24,
     p: 4,
   };
-  const data = [
+  const dataMsg = [
 		{
 			to: 1,
 			from: "Kyle O",
@@ -41,7 +43,7 @@ export default function Messages() {
 		}
 	]
   const encodedValue = encodeURIComponent(1);
-  {/*const [data,setData] = useState([]);*/}
+  const [data,setData] = useState([]);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -65,14 +67,15 @@ export default function Messages() {
     });
     res.then(response => response.text())   
     .catch(error => console.log("Error detected: " + error))
+
+    alert("Message Sent");
+    handleClose();
 } 
-{/*}
-  useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/messages?$to={encodedValue}')
+
+let url = new URL('http://127.0.0.1:8000/api/messages');
+    fetch(url)
       .then(response => response.json())
       .then(data => setData(data));
-  }, []);
-*/}
 
   return (
     <>

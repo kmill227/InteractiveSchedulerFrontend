@@ -3,16 +3,18 @@ import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import BurgerMenu from './components/BurgerNav';
+import { useNavigate } from 'react-router-dom';
+
 
 
     function CreateGroup() {
+        let navigate = useNavigate();
         const [name, setName] = useState("");
         const [description, setDescription] = useState("");
         const studentid = 1;
         
        let handleSubmit = (e) => {
 
-        console.log({name});
         let res = fetch('http://127.0.0.1:8000/api/groups', {
             method: "PUT",
             headers: {'Content-Type': 'multipart/form-data' },
@@ -24,6 +26,10 @@ import BurgerMenu from './components/BurgerNav';
         });
         res.then(response => response.text())   
         .catch(error => console.log("Error detected: " + error))
+
+        alert("Group Added");
+        navigate('/Groups');
+
     } 
         return (
             <>

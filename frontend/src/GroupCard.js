@@ -11,6 +11,8 @@ import { CardHeader } from '@material-ui/core';
 import Grid from "@material-ui/core/Grid";
 import { useState, useEffect } from 'react';
 import BurgerMenu from './components/BurgerNav';
+import { TextField } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 
 export default function GroupCard() {
@@ -18,24 +20,58 @@ export default function GroupCard() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [name, setName] = useState("");
-        const [description, setDescription] = useState("");
-  
-    let handleSubmit = (e) => {
+  const [description, setDescription] = useState("");
+  const [nameSearch, setNameSearch] = useState("");
 
-    console.log({name});
+  
+  const handleSearch = (e) => {
+    const params = { name: nameSearch };
+    let url = new URL('http://127.0.0.1:8000/api/groups');
+    Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
+
+    fetch(url)
+      .then(response => response.json())
+      .then(data => setData(data));
+  }
+
+  const clearFilter = (e) => {
+    let url = new URL('http://127.0.0.1:8000/api/groups');
+    fetch(url)
+      .then(response => response.json())
+      .then(data => setData(data));
+  }
+
+    let handleSubmit = (e) => {
+    
+      let res = fetch('http://127.0.0.1:8000/api/groups', {
+          method: "PUT",
+          headers: {'Content-Type': 'multipart/form-data' },
+          body : JSON.stringify({
+              'name': name,
+              'description' : description,
+              'studentid': 1
+          }),
+          
+      });
+      res.then(response => response.text())   
+      .catch(error => console.log("Error detected: " + error))
+   }
+
+   let handleJoinGroup = (nameValue, descriptionValue) => {
+    
     let res = fetch('http://127.0.0.1:8000/api/groups', {
         method: "PUT",
         headers: {'Content-Type': 'multipart/form-data' },
         body : JSON.stringify({
-            'name': name,
-            'description' : description,
+            'name': nameValue,
+            'description' : descriptionValue,
             'studentid': 1
         }),
         
     });
     res.then(response => response.text())   
     .catch(error => console.log("Error detected: " + error))
-} 
+ }
   const style = {
     position: 'absolute',
     top: '50%',
@@ -62,21 +98,39 @@ export default function GroupCard() {
       const url = new URL(apiUrl);
       Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
-      let resp = fetch(url, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      });
+      useEffect(() => {
+        fetch(url)
+          .then(response => response.json())
+          .then(mydata => setMyData(mydata));
+      }, []);
 
-      resp.then(response => response.json())
-      .then(mydata => setMyData(mydata))
-      .catch(error => {
-        console.error('Error:', error);
-      });
+      const handleGroup = () => {
+        handleSubmit();
+        handleOpen();
+        
+      }
   
     return (
       <div>
+        <div className="groupHeader">
+        <Grid
+          container
+          spacing={2}
+          direction="row"
+        >       
+          
+            <Grid item xs={6} sm={6}  className="searchGroup">
+              <TextField className="SearchText" type="text" placeholder='Search Groups' variant="outlined" value={nameSearch} onChange={(e) => setNameSearch(e.target.value)} size="small"/>
+            </Grid>
+            <Grid item xs={6} sm={6}  className="searchGroup">
+              <Button className="groupButton" variant="contained" type="search" onClick={handleSearch}>Search</Button>
+              <Button className="groupButton" variant="contained" type="submit" onClick={clearFilter} style={{ marginLeft: '1em' }}>Clear Filter</Button>
+            </Grid>
+            <Grid item xs={12} sm={6} md={3}>
+              <Button className="createGroup" variant="contained" type="button" as={Link} to="/CreateGroup">Create Group</Button>
+            </Grid>
+          </Grid>
+        </div>
       <br/>
       <h3>My Groups</h3>
       <Grid
@@ -96,7 +150,6 @@ export default function GroupCard() {
                     {myelem.description}
                   </CardContent>
       <CardActions className={"cardButton"}>
-        <Button type="submit" onSubmit={handleSubmit} size="small" onClick={handleOpen}>Join Group</Button>
       </CardActions>
               </Card>
               <Modal
@@ -134,7 +187,7 @@ export default function GroupCard() {
                     {elem.description}
                   </CardContent>
       <CardActions className={"cardButton"}>
-        <Button type="submit" onSubmit={handleSubmit} size="small" onClick={handleOpen}>Join Group</Button>
+        <Button type="submit" size="small" onClick={() => handleJoinGroup(elem.name, elem.description)}>Join Group</Button>
       </CardActions>
               </Card>
               <Modal
