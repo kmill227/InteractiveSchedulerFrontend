@@ -1,4 +1,8 @@
-.calendar {
-
-    margin-left: 500px;
+@font-face{
+    font-family: "ChangaOne";
+    src: local("ChangaOne"),
+    url("./font/ChangaOne-Regular.ttf") format("truetype");
+}
+.calendarFont{
+    font-family: "ChangaOne";
 }

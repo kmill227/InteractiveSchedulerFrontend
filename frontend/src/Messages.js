@@ -15,6 +15,7 @@ import BurgerMenu from './components/BurgerNav';
 import './Messages.css';
 import "./font/ChangaOne-Regular.ttf";
 import "./font/Raleway-Regular.ttf";
+import "./font/Raleway-VariableFont_wght.ttf"
 
 
 export default function Messages() {
@@ -93,6 +94,7 @@ export default function Messages() {
           <EmailIcon />
         </ListItemIcon>
         <ListItemText
+        primaryTypographyProps={{fontFamily: "Raleway-Medium"}}
           primary = {elem.from}
           secondary={
             <React.Fragment>

@@ -9,19 +9,9 @@
     src: local("Raleway-Medium"),
     url("./font/Raleway-VariableFont_wght.ttf");
 }
-
-#homeHeader{
+#groupTitle{
     font-family: "ChangaOne";
-    font-size: 300%;
-    border-bottom-width: 2px;
-    border-bottom-color: black;
-    border-bottom-style: solid;
 }
-
-#Home_mainContent{
-font-family: "Raleway";
-}
-.upcomingEvents{
-    font-family: "Raleway";
-    font-size: 300%;
+#cardHeader{
+    font-family: "Raleway-Medium";
 }

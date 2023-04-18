@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import './RightNav.css';
+import "../font/Raleway-Regular.ttf";
 
 const Ul = styled.ul`
   list-style: none;

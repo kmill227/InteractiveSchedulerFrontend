@@ -11,6 +11,8 @@ import { CardHeader } from '@material-ui/core';
 import Grid from "@material-ui/core/Grid";
 import { useState, useEffect } from 'react';
 import BurgerMenu from './components/BurgerNav';
+// import './font/ChangaOne-Regular.ttf';
+// import './GroupCard.css';
 
 
 export default function GroupCard() {
@@ -46,7 +48,7 @@ export default function GroupCard() {
     borderRadius: 1,
     boxShadow: 24,
     p: 4,
-    textAlign: 'center'
+    textAlign: 'center',
   };
     const [mydata, setMyData] = useState([]);
     const [data, setData] = useState([]);
@@ -78,7 +80,7 @@ export default function GroupCard() {
     return (
       <div>
       <br/>
-      <h3>My Groups</h3>
+      <h3 id="groupTitle">My Groups</h3>
       <Grid
       container
       spacing={2}
@@ -116,7 +118,7 @@ export default function GroupCard() {
       ))}
   </Grid>
   <br/>
-  <h3>All Groups</h3>
+  <h3 id="groupTitle">All Groups</h3>
   <Grid
       container
       spacing={2}

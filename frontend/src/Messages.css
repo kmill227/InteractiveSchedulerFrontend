@@ -6,6 +6,9 @@
     font-family: "Raleway";
     src: local("Raleway"),
     url("./font/Raleway-Regular.ttf") format("truetype");
+    font-family: "Raleway-Medium";
+    src: local("Raleway-Medium"),
+    url("./font/Raleway-VariableFont_wght.ttf");
 }
 
 #messageHeader{
