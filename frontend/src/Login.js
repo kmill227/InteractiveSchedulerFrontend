@@ -35,7 +35,6 @@ const LoginPage = () => {
           body : JSON.stringify({
             "userName": userName,
             "pwd": pwd,
-            "studentId": studentId,
       }),
     
     })
