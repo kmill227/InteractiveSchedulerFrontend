@@ -6,7 +6,7 @@ const Support = () => {
   return (
     <>
     <BurgerMenu />
-    <div style={{marginLeft: 10}}>
+    <div style={{marginLeft: "1%"}}>
     <h1 id="supportHeader">Support</h1>
     <div id="Support_mainContent">
     <h2>Frequently Asked Questions</h2>

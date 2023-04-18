@@ -8,7 +8,7 @@ export default function() {
     return (
         <>
         <BurgerMenu/>
-        <div style={{marginLeft: 10}}>
+        <div style={{marginLeft: "1%"}}>
         <h1 id="accountHeader">Account Page Coming Soon</h1>
         </div>
         </>

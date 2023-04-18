@@ -82,7 +82,7 @@ let url = new URL('http://127.0.0.1:8000/api/messages');
   return (
     <>
     <BurgerMenu />
-    <div style={{marginLeft: 10}}>
+    <div style={{marginLeft: "1%"}}>
     <h1 id="messageHeader">Messages</h1>
     <br/>
     <Grid item xs={12} sm={6} md={3} id="sendMessage">
