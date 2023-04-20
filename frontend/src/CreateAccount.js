@@ -25,14 +25,14 @@ export default function(){
     let res = fetch('http://127.0.0.1:8000/api/login', {
 
         method: "PUT",
-        headers: {'Content-Type': 'multipart/form-data' },
+        headers: {'Content-Type': 'application/json' },
         body : JSON.stringify({
             "email": email,
             "password": password,
-            "firstName": firstName,
-            "lastName" : lastName,
+            "firstname": firstName,
+            "lastname" : lastName,
             "address": address,
-            "phoneNumber": phoneNumber,
+            "phonenumber": phoneNumber,
             "userName": userName,
         }),
         
