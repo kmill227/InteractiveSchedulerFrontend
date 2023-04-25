@@ -52,6 +52,30 @@ import "./font/ChangaOne-Regular.ttf";
 			resourceId: 2
 		}
 	]
+	
+	const [data, setData] = useState([]);
+	const apiUrl = 'http://127.0.0.1:8000/api/events';
+    let today = new Date();
+	let tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+
+    tomorrow = tomorrow.toISOString();
+	const params = {studentid: 1};
+    let url = new URL(apiUrl);
+    Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
+
+	let resp = fetch(url, {
+		method: 'GET',
+		headers: {
+		  'Content-Type': 'multipart/form-data'
+		}
+	  });
+  
+	  resp.then(response => response.json())
+	  .then(data => setData(data))
+	  .catch(error => {
+		console.error('Error:', error);
+	  });
 	  
     return(
 	<>
@@ -68,7 +92,7 @@ import "./font/ChangaOne-Regular.ttf";
         </div>
 			<div>
 				<Calendar
-					events={myevents}
+					events={data}
 					localizer={localizer}
 					defaultDate={new Date()}
 					style={{ height: 700, fontFamily:"ChangaOne"	}
