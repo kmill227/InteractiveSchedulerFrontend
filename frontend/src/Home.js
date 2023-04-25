@@ -9,7 +9,7 @@ import ListItemText from '@mui/material/ListItemText';
 import { ListItemIcon } from '@material-ui/core';
 import { useState, useEffect } from 'react';
 import Burger from "./components/Burger";
-
+// imports
 
 export default function(){
     const [data, setData] = useState([]);
@@ -66,12 +66,12 @@ export default function(){
     return (
         <>
         <div id="backgroundColor">
-        <BurgerMenu/>
+        <BurgerMenu/>                   {/*navbar*/}
         <h1 id="homeHeader">Home</h1>
         <div id="Home_mainContent">
         <h2>Today's Events:</h2>
         <p>
-        <List sx={{ width: '100%', maxWidth: 360,}}>
+        <List sx={{ width: '100%', maxWidth: 360,}}>   {/*styling*/}
     <br/>
     {data.map(elem => (
       <ListItem alignItems="flex-start">
@@ -85,7 +85,7 @@ export default function(){
         </p>
         <h2>Upcoming Events:</h2>
         <p>
-            <List sx={{ width: '100%', maxWidth: 360,}}>
+            <List sx={{ width: '100%', maxWidth: 360,}}> {/*styling*/}
             <br/>
                 {weekData.map(elemWeek => (
                     <ListItem alignItems="flex-start">

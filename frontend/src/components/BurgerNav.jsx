@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Burger from './Burger';
 import logo from '../images/long-logo.png';
-
+// imports
 
 const Nav = styled.nav`
   width: 100%;
@@ -15,6 +15,8 @@ const Nav = styled.nav`
   
   }
 `
+// the nav bar
+
 
 const BurgerMenu = () => {
   return (
@@ -27,5 +29,5 @@ const BurgerMenu = () => {
 
   )
 }
-
+// the nav bar + burger menu
 export default BurgerMenu

@@ -1,12 +1,12 @@
 import React from 'react';
 import "./font/ChangaOne-Regular.ttf";
 import BurgerMenu from './components/BurgerNav';
-  
+  // imports
 const Support = () => {
   return (
     <>
-    <BurgerMenu />
-    <div style={{marginLeft: "1%"}}>
+    <BurgerMenu /> {/*navbar*/}
+    <div style={{marginLeft: "1%"}}>   {/*styling*/}
     <h1 id="supportHeader">Support</h1>
     <div id="Support_mainContent">
     <h2>Frequently Asked Questions</h2>

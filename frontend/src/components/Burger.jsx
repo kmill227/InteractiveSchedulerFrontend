@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import RightNav from './RightNav';
 import logo from '../images/tall-logo.png';
+// imports
 
 const StyledBurger = styled.div`
   width: 2rem;
@@ -38,6 +39,7 @@ const StyledBurger = styled.div`
     }
   }
 `;
+// the actual style of the burger
 
 const Burger = () => {
   const [open, setOpen] = useState(false)
@@ -53,5 +55,5 @@ const Burger = () => {
     </>
   )
 }
-
+// sets up it opening and changing
 export default Burger

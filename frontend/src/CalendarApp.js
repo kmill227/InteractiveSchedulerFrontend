@@ -21,7 +21,7 @@ import { Component } from "react";
 import FormLabel from '@mui/material/FormLabel';
 import BurgerMenu from './components/BurgerNav';
 import "./font/ChangaOne-Regular.ttf";
-
+// imports
 
 
  const MyCalendar = () => {
@@ -82,7 +82,7 @@ import "./font/ChangaOne-Regular.ttf";
 	  
     return(
 	<>
-	<BurgerMenu />
+	<BurgerMenu /> {/*navbar*/}
     <div>
         
 		<div className="calendar">

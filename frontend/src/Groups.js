@@ -11,7 +11,7 @@ import Grid from "@material-ui/core/Grid";
 import Box from '@mui/material/Box';
 import { Link } from 'react-router-dom';
 import BurgerMenu from './components/BurgerNav';
-
+// imports
 
 
 export default function Group(){
@@ -31,7 +31,7 @@ export default function Group(){
 } 
     return (
       <>
-      <BurgerMenu />
+      <BurgerMenu /> {/*navbar*/}
       <div className="groups">
         
       <div className={"groupCards"}>

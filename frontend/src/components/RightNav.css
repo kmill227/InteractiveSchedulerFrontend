@@ -4,21 +4,21 @@
     url("../font/Raleway-Regular.ttf") format("truetype");
     
 }
-
+/* font */
 a:link { text-decoration: none; }
-
+/* keeps the links plain */
 
 a:visited { text-decoration: none; }
 
-
+/* keeps the links plain */
 a:hover { text-decoration: none; 
 background-color: #063970;
 color: white;
 }
-
+/* changes the links with hovering */
 
 a:active { text-decoration: none; }
-
+/* keep the links plain */
 a {
     color: white;
     display: inline-block;
@@ -30,3 +30,4 @@ a {
     border-radius:20%;
     font-family: "Raleway";
 }
+/* change link fonts, spacing, and colors */

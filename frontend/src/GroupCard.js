@@ -13,7 +13,7 @@ import { useState, useEffect } from 'react';
 import BurgerMenu from './components/BurgerNav';
 import { TextField } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-
+// imports
 
 export default function GroupCard() {
   const [open, setOpen] = React.useState(false);

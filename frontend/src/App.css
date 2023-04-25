@@ -1,18 +1,18 @@
 .App {
   text-align: center;
 }
-
+/* react css */
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
-
+/* react css */
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
+/* react css */
 @font-face{
   font-family: "Raleway";
   src: local("Raleway"),
@@ -21,12 +21,13 @@
   src: local("Raleway-Medium"),
   url("./font/Raleway-VariableFont_wght.ttf");
 }
-
+/* fonts */
 @font-face{
 font-family: "ChangaOne";
 src: local("ChangaOne"),
 url("./font/ChangaOne-Regular.ttf") format("truetype");
 }
+/* fonts */
 .App-header {
   min-height: 100vh;
   display: flex;
@@ -36,11 +37,11 @@ url("./font/ChangaOne-Regular.ttf") format("truetype");
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
+/* react css */
 .App-link {
   color: #61dafb;
 }
-
+/* react css */
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -49,57 +50,56 @@ url("./font/ChangaOne-Regular.ttf") format("truetype");
     transform: rotate(360deg);
   }
 }
-/*.main{
-  margin-left:15%;
- 
-} */
+/* react css */
+
 
 .groupCards, .groups, .groupButton {
   margin: 10px;
 }
-
+/* group card spacing */
 .Cards {
   background-color: blue;
   text-align: center;
 }
-
+/* card color */
 .cardButton {
   align-items: center;
 }
-
+/* button alignment */
 .groupHeader {
   flex-direction: row;
   margin: 10px;
 }
-
+/* header css */
 .createGroup {
   margin-left: 10px;
 }
-
+/* spacing */
 .searchGroup {
   padding: 5px;;
 }
-
+/* spacing */
 .notifications {
   
   margin-left: 2%;
 }
-
+/* spacing */
 .loginpage {
 margin-left: 5%;
 }
-
+/* spacing */
 .groupButton{
   margin-left: 5%;
 }
+/* spacing */
 .SearchText{
   width: 100%;
 }
-
+/* change the search bar length */
 #groupTitle{
   font-family:"ChangaOne";
 }
-
+/* font */
 #homeHeader{
   font-family: "ChangaOne";
   font-size: 300%;
@@ -108,16 +108,17 @@ margin-left: 5%;
   border-bottom-style: solid;
   margin-left: 1%;
 }
-
+/* header style */
 #Home_mainContent{
   font-family: "Raleway";
   margin-left: 1%;
 }
+/* home main content style */
 .upcomingEvents{
   font-family: "Raleway";
   font-size: 300%;
 }
-
+/* font */
 
 #messageHeader{
   font-family: "ChangaOne";
@@ -127,12 +128,15 @@ margin-left: 5%;
   border-bottom-style: solid;
  
 }
+/* header style */
 #sendMessage{
   margin-left:1%;
 }
+/* spacing */
 #msgcontent{
   font-family: "Raleway";
 }
+/* font */
 .lineForMessage{
   margin: 0;
   padding: 0;
@@ -142,6 +146,7 @@ margin-left: 5%;
   border-bottom-style: solid;
   width: 100%;
 }
+/* message styling */
 #notiHeader{
   font-family: "ChangaOne";
   font-size: 300%;
@@ -149,15 +154,15 @@ margin-left: 5%;
   border-bottom-color: black;
   border-bottom-style: solid;
 }
-
+/* header style */
 #notiPage{
   margin-left: 1%;
 }
-
+/* spacing */
 .NotificationList{
   z-index:2;
 }
-
+/* changes z index to move it behind burger bar in particular */
 #supportHeader{
   font-family: "ChangaOne";
   font-size: 300%;
@@ -166,15 +171,15 @@ margin-left: 5%;
   border-bottom-style: solid;
  
 }
-
+/* header style */
 #Support_mainContent{
   font-family: "Raleway";
 }
-
+/* font */
 #groupTitle{
   font-family: "ChangaOne";
 }
-
+/* font */
 #accountHeader{
   font-family: "ChangaOne";
   font-size: 300%;
@@ -182,3 +187,4 @@ margin-left: 5%;
   border-bottom-color: black;
   border-bottom-style: solid;
 }
+/* header style */

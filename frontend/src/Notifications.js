@@ -9,7 +9,7 @@ import { ListItemIcon } from '@material-ui/core';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import "./font/ChangaOne-Regular.ttf";
 import BurgerMenu from './components/BurgerNav';
-
+// imports
 
 
 
@@ -35,10 +35,10 @@ export default function() {
         <>
             
             { <div>
-                <BurgerMenu/>
+                <BurgerMenu/>   {/*burger bar*/}
                 <div id="notiPage"> 
                 <h1 id="notiHeader">Notifications</h1>
-                { <List className= "NotificationList" sx={{ width: '100%', maxWidth: 360}}>
+                { <List className= "NotificationList" sx={{ width: '100%', maxWidth: 360}}> {/*styling*/}
                     {data.map(elem => (
                         <ListItem alignItems="flex-start">
                             <ListItemIcon>

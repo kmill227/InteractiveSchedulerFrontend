@@ -16,7 +16,7 @@ import "./font/ChangaOne-Regular.ttf";
 import { useNavigate } from 'react-router-dom';
 import "./font/Raleway-Regular.ttf";
 import "./font/Raleway-VariableFont_wght.ttf"
-
+// imports
 
 
 export default function Messages() {
@@ -81,8 +81,8 @@ let url = new URL('http://127.0.0.1:8000/api/messages');
 
   return (
     <>
-    <BurgerMenu />
-    <div style={{marginLeft: "1%"}}>
+    <BurgerMenu /> {/*navbar*/}
+    <div style={{marginLeft: "1%"}}> {/*styling*/}
     <h1 id="messageHeader">Messages</h1>
     <br/>
     <Grid item xs={12} sm={6} md={3} id="sendMessage">
@@ -97,7 +97,7 @@ let url = new URL('http://127.0.0.1:8000/api/messages');
           <EmailIcon />
         </ListItemIcon>
         <ListItemText
-        primaryTypographyProps={{fontFamily: "Raleway-Medium"}}
+        primaryTypographyProps={{fontFamily: "Raleway-Medium"}} 
           primary = {elem.from}
           secondary={
             <React.Fragment>

@@ -15,25 +15,25 @@ import Account from './Account';
 import Notifications from './Notifications'
 import "./font/ChangaOne-Regular.ttf";
 import "./font/Raleway-Regular.ttf";
-
+// imports
 function App() {
   return (
     <div>
       {<Router>
         <div className="main">
           <Routes>
-            <Route exact path='/' element={<Login/>} />
-            <Route exact path='/Home' element={<Home/>} />
-            <Route exact path='/Groups' element={<Groups/>} />
-            <Route path='/CalendarApp' element={<MyCalendar/>} />
-            <Route path='/Messages' element={<Messages/>} />
-            <Route path='/Support' element={<Support/>} />
-            <Route path='/AddEvent' element={<AddEvent/>} />
-            <Route path='/Groups' element={<Groups/>} />
-            <Route path='/CreateGroup' element={<CreateGroup/>} />
-            <Route path='/Account' element={<Account/>} />
-            <Route path='/Notifications' element={<Notifications/>} />
-            <Route path='/CreateAccount' element={<CreateAccount/>} />
+            <Route exact path='/' element={<Login/>} />   {/*login page */}
+            <Route exact path='/Home' element={<Home/>} /> {/*home page */}
+            <Route exact path='/Groups' element={<Groups/>} /> {/*groups page */}
+            <Route path='/CalendarApp' element={<MyCalendar/>} /> {/*calendar page */}
+            <Route path='/Messages' element={<Messages/>} />{/*messages page */}
+            <Route path='/Support' element={<Support/>} />{/*support page */}
+            <Route path='/AddEvent' element={<AddEvent/>} />{/*add an event*/}
+            <Route path='/Groups' element={<Groups/>} /> {/*groups page */}
+            <Route path='/CreateGroup' element={<CreateGroup/>} /> {/*create a group */}
+            <Route path='/Account' element={<Account/>} /> {/*account page */}
+            <Route path='/Notifications' element={<Notifications/>} /> {/*notfications page */}
+            <Route path='/CreateAccount' element={<CreateAccount/>} /> {/*create an account */}
           </Routes>
         </div>
       </Router>

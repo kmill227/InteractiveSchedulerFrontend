@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import './RightNav.css';
 import "../font/Raleway-Regular.ttf";
+// imports
 
 const Ul = styled.ul`
   list-style: none;
@@ -27,6 +28,7 @@ const Ul = styled.ul`
     }
   }
 `;
+// when the bar drops
 
 
 const RightNav = ({ open }) => {
@@ -43,5 +45,6 @@ const RightNav = ({ open }) => {
     </Ul>
   )
 }
+// just the links
 
 export default RightNav
