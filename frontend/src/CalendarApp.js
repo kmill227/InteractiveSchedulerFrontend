@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Modal from '@mui/material/Modal';
 import { render } from "react-dom";
@@ -64,18 +64,21 @@ import "./font/ChangaOne-Regular.ttf";
     let url = new URL(apiUrl);
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
-	let resp = fetch(url, {
-		method: 'GET',
-		headers: {
-		  'Content-Type': 'multipart/form-data'
-		}
-	  });
-  
-	  resp.then(response => response.json())
-	  .then(data => setData(data))
-	  .catch(error => {
-		console.error('Error:', error);
-	  });
+	useEffect(() => {
+		let resp = fetch(url, {
+		  method: 'GET',
+		  headers: {
+			'Content-Type': 'multipart/form-data',
+		  },
+		});
+	
+		resp
+		  .then((response) => response.json())
+		  .then((data) => setData(data))
+		  .catch((error) => {
+			console.error('Error:', error);
+		  });
+	  }, [url]);
 	  
     return(
 	<>
