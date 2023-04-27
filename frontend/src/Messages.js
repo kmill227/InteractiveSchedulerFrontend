@@ -16,10 +16,14 @@ import "./font/ChangaOne-Regular.ttf";
 import { useNavigate } from 'react-router-dom';
 import "./font/Raleway-Regular.ttf";
 import "./font/Raleway-VariableFont_wght.ttf"
+import Cookies from 'js-cookie';
 // imports
 
 
 export default function Messages() {
+  const cookieData = Cookies.get('userInfo');
+  const studentid = JSON.parse(cookieData).studentid;
+
   let navigate = useNavigate();
   const style = {
     position: 'absolute',
@@ -40,7 +44,6 @@ export default function Messages() {
   const handleClose = () => setOpen(false);
   const [to, setTo] = useState("");
   const [msgContent, setMsgContent] = useState("");
-  const studentid = 1;
 
   let handleSubmit = (e) => {
 
@@ -49,9 +52,9 @@ export default function Messages() {
         method: "PUT",
         headers: {'Content-Type': 'multipart/form-data' },
         body : JSON.stringify({
-            'to': to,
+            'email': to,
             'msgcontent' : msgContent,
-            'from' : studentid
+            'fromuser' : studentid
         }),
         
     });
@@ -62,7 +65,7 @@ export default function Messages() {
     handleClose();
 } 
 let touser = 1;
-    const params = { to: touser };
+    const params = { touser: studentid };
     let url = new URL('http://127.0.0.1:8000/api/messages');
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
     fetch(url)

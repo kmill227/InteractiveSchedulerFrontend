@@ -13,9 +13,13 @@ import { useState, useEffect } from 'react';
 import BurgerMenu from './components/BurgerNav';
 import { TextField } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import Cookies from 'js-cookie';
+
 // imports
 
 export default function GroupCard() {
+  const cookieData = Cookies.get('userInfo');
+  const studentid = JSON.parse(cookieData).studentid;
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -49,7 +53,7 @@ export default function GroupCard() {
           body : JSON.stringify({
               'name': name,
               'description' : description,
-              'studentid': 1
+              'studentid': studentid
           }),
           
       });
@@ -65,7 +69,7 @@ export default function GroupCard() {
         body : JSON.stringify({
             'name': nameValue,
             'description' : descriptionValue,
-            'studentid': 1
+            'studentid': studentid
         }),
         
     });
@@ -94,7 +98,7 @@ export default function GroupCard() {
     }, []);
 
     const apiUrl = 'http://127.0.0.1:8000/api/groups';
-      const params = {studentid: 1};
+      const params = {studentid: studentid};
       const url = new URL(apiUrl);
       Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 

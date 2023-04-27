@@ -7,6 +7,7 @@ import {
   Paper,
   Button
 } from '@material-ui/core';
+import Cookies from 'js-cookie';
 // imports
 
 const LoginPage = () => {
@@ -38,13 +39,19 @@ const LoginPage = () => {
     }),
   })
     .then(response => {
-      console.log(response.headers['Content-Type'])
       if (response.status === 202) {
-        // Create a cookie that expires in 1 hour
-        const expires = new Date(Date.now() + 3600000);
-        // Redirect the user to the home page
-        window.location.href = "/Home";
-      } else {
+        response.json().then(data => {
+          alert(data);
+          // Create a cookie that expires in 1 hour
+          const expires = new Date(Date.now() + 3600000);
+          Cookies.set('userInfo', JSON.stringify(data), { expires });
+          setTimeout(() => {
+            const cookieData = Cookies.get('userInfo');
+            // Redirect the user to the home page
+            window.location.href = "/Home";
+          }, 100); // wait 100ms before retrieving cookie data
+        });
+  } else {
         console.log("Authentication failed");
         alert('Invalid Email or password combination');
       }

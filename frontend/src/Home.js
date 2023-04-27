@@ -8,9 +8,11 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import { ListItemIcon } from '@material-ui/core';
 import Burger from "./components/Burger";
+import Cookies from 'js-cookie';
 
 export default function(){
-
+    const cookieData = Cookies.get('userInfo');
+    console.log(JSON.parse(cookieData).studentid);
     const [data, setData] = useState([]);
     const [weekData, setWeekData] = useState([]);
 
@@ -59,7 +61,9 @@ export default function(){
                 }
             })
             .then(response => response.json())
-            .then(data => resolve(data))
+            .then(data =>
+            resolve(data)
+            )
             .catch(error => reject(error));
         });
     }
