@@ -32,18 +32,7 @@ export default function Messages() {
     boxShadow: 24,
     p: 4,
   };
-  const dataMsg = [
-		{
-			to: 1,
-			from: "Kyle O",
-      msgcontent: "Hello friend"
-		},
-		{
-			to: 1,
-			from: "Test Test",
-      msgcontent: "testing"
-		}
-	]
+
   const encodedValue = encodeURIComponent(1);
   const [data,setData] = useState([]);
   const [open, setOpen] = React.useState(false);
@@ -57,8 +46,7 @@ export default function Messages() {
 
     console.log({msgContent});
     let res = fetch('http://127.0.0.1:8000/api/messages', {
-        mode: 'no-cors',
-        method: "POST",
+        method: "PUT",
         headers: {'Content-Type': 'multipart/form-data' },
         body : JSON.stringify({
             'to': to,
@@ -73,8 +61,10 @@ export default function Messages() {
     alert("Message Sent");
     handleClose();
 } 
-
-let url = new URL('http://127.0.0.1:8000/api/messages');
+let touser = 1;
+    const params = { to: touser };
+    let url = new URL('http://127.0.0.1:8000/api/messages');
+    Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
     fetch(url)
       .then(response => response.json())
       .then(data => setData(data));
@@ -89,26 +79,26 @@ let url = new URL('http://127.0.0.1:8000/api/messages');
             <Button className="sendMessage" variant="contained" type="button" onClick={handleOpen}>Send Message</Button>
     </Grid>
     <List sx={{ width: '100%' }}>
-    <br/>
-    {dataMsg.map(elem => (
-      <div className="lineForMessage">
+  <br/>
+  {data.map((elem, index) => (
+    <div className="lineForMessage" key={index}>
       <ListItem alignItems="flex-start">
         <ListItemIcon>
           <EmailIcon />
         </ListItemIcon>
         <ListItemText
-        primaryTypographyProps={{fontFamily: "Raleway-Medium"}} 
-          primary = {elem.from}
+          primaryTypographyProps={{fontFamily: "Raleway-Medium"}} 
+          primary={elem.from}
           secondary={
             <React.Fragment>
               {elem.msgcontent}
             </React.Fragment>
-            
           }
         />
       </ListItem>
-      </div>))}
-      </List>
+    </div>
+  ))}
+</List>
 
       
 <Modal

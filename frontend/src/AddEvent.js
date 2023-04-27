@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import State, { GridList } from '@material-ui/core'
 import { Component } from "react";
 import FormLabel from '@mui/material/FormLabel';
 import axios from 'axios';
@@ -53,7 +52,9 @@ import BurgerMenu from './components/BurgerNav';
             <TextField label="title" value={title} onChange={(e) => setTitle(e.target.value)} />
             </Grid>
             <Grid item xs={12} align="center">
-            <TextField InputProps={{placeholder: 'Start Time'}} type="datetime-local" value={starttime} onChange={(e) => setStartTime(e.target.value)} />            </Grid>
+            <TextField Label="Start 
+            time" InputLabelProps={{shrink: true}} type="datetime-local" value={starttime} onChange={(e) => setStartTime(e.target.value)} />         
+            </Grid>
             <Grid item xs={12} align="center">
             <TextField label="End Time" type="datetime-local" value={endtime} onChange={(e) => setEndTime(e.target.value)} />
             </Grid>

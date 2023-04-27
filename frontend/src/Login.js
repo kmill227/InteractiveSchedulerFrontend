@@ -21,36 +21,36 @@ const LoginPage = () => {
     setChecked(event.target.checked);
   };
 
-    let handleSubmit = (e) => {
-      e.preventDefault();
-      const passwordRegex = /^[a-zA-Z0-9]+$/;
+  let handleSubmit = (e) => {
+    e.preventDefault();
+    const passwordRegex = /^[a-zA-Z0-9]+$/;
 
-      if (!passwordRegex.test(pwd)){
-        alert('Please only use numbers and letters for password')
-        return;
-      }
-      fetch('http://127.0.0.1:8000/api/login', {
-          method: "POST",
-          headers: {'Content-Type': 'application/json' },
-          body : JSON.stringify({
-            "userName": userName,
-            "pwd": pwd,
-      }),
-    
-    })
-      .then(response => {
-        console.log(response.headers)
-    if (response.headers.get('authenticated') === 'True') {
-      // Create a cookie that expires in 1 hour
-      const expires = new Date(Date.now() + 3600000);
-      // Redirect the user to the home page
-      window.location.href = "/Home";
-    } else {
-      console.log("Authentication failed");
-      alert('Invalid Email or password combination');
+    if (!passwordRegex.test(pwd)){
+      alert('Please only use numbers and letters for password')
+      return;
     }
+    fetch('http://127.0.0.1:8000/api/login', {
+        method: "POST",
+        headers: {'Content-Type': 'application/json' },
+        body : JSON.stringify({
+          "userName": userName,
+          "pwd": pwd,
+    }),
   })
-  .catch(error => console.log("Error detected: " + error));
+    .then(response => {
+      console.log(response.headers['Content-Type'])
+      if (response.status === 202) {
+        // Create a cookie that expires in 1 hour
+        const expires = new Date(Date.now() + 3600000);
+        // Redirect the user to the home page
+        window.location.href = "/Home";
+      } else {
+        console.log("Authentication failed");
+        alert('Invalid Email or password combination');
+      }
+    })
+    .catch(error => console.log("Error detected: " + error));
+
 }
 
   return (
