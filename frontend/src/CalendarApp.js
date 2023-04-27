@@ -7,103 +7,142 @@ import { format, parse, startOfWeek, getDay } from "date-fns";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import AddEvent from './AddEvent';
 import Button from '@mui/material/Button';
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
-import TextField from "@material-ui/core/TextField";
-import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import { Link } from "react-router-dom";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import State, { GridList } from '@material-ui/core'
-import { Component } from "react";
-import FormLabel from '@mui/material/FormLabel';
 import BurgerMenu from './components/BurgerNav';
 import "./font/ChangaOne-Regular.ttf";
+import {Select, MenuItem } from '@mui/material';
+import Cookies from 'js-cookie';
 
 const MyCalendar = () => {
-  const locales = {
-    "en-US": require("date-fns")
-  };
 
-  const localizer = dateFnsLocalizer({
-    format,
-    parse,
-    startOfWeek,
-    getDay,
-    locales
-  });
+    const locales = {
+      "en-US": require("date-fns")
+    };
+    const localizer = dateFnsLocalizer({
+      format,
+      parse,
+      startOfWeek,
+      getDay,
+      locales
+    });
 
-  const myevents = [
-    {
-      id: 0,
-      title: "training",
-      start: new Date(2023, 3, 27, 12, 0, 0),
-      end: new Date(2023, 3, 27, 13, 0, 0),
-      resourceId: 1
-    },
-    {
-      id: 1,
-      title: "late lunch",
-      start: new Date(2023, 4, 25, 14, 0, 0),
-      end: new Date(2023, 4, 25, 16, 30, 0),
-      resourceId: 2
-    }
-  ]
+  const cookieData = Cookies.get('userInfo');
+  const studentid = JSON.parse(cookieData).studentid;
+  const [data, setStudentData] = useState([]);
+  const [selectedGroup, setSelectedGroup] = useState('');
+  const [groups, setGroups] = useState([]);
+  const [selectedOption, setSelectedOption] = useState('studentEvents');
+  const eventUrl = 'http://127.0.0.1:8000/api/events';
+  const groupUrl = `http://127.0.0.1:8000/api/groups?studentid=${studentid}`;
+  let url = 'http://127.0.0.1:8000/api/events';
 
-  const [data, setData] = useState([]);
-  const apiUrl = 'http://127.0.0.1:8000/api/events';
   let today = new Date();
   let tomorrow = new Date(today);
   tomorrow.setDate(tomorrow.getDate() + 1);
   tomorrow = tomorrow.toISOString();
-
-  const params = { studentid: 1 };
-  let url = new URL(apiUrl);
-  Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
-
-  const fetchData = async () => {
-	try {
-	  const response = await fetch(url, {
-		method: 'GET',
-		headers: {
-		  'Content-Type': 'multipart/form-data',
-		},
-	  });
-	  const data = await response.json();
-	  const events = data.map(event => ({
-		id: event.eventid,
-		title: event.title,
-		start: parse(event.start, 'yyyy-MM-dd\'T\'HH:mm:ss\'Z\'', new Date()),
-		end: parse(event.end, 'yyyy-MM-dd\'T\'HH:mm:ss\'Z\'', new Date()),
-	  }));
-	  setData(events);
-	  console.log(data)
-	} catch (error) {
-	  console.error('Error:', error);
-	}
-  };
   
 
-  useEffect(() => {
-    fetchData();
-  }, [url]);
-	  
-    return(
-	<>
-	<BurgerMenu /> {/*navbar*/}
-    <div>
-        
-		<div className="calendar">
-            <div style={{marginBottom: "20px"}}>
-				<p></p>
-				<p></p>
-        <Button style={{marginLeft: "20px"}}variant="contained" as={Link} to="/AddEvent">
-            Add Event
-        </Button>
-        </div>
-			<div>
+  const fetchGroups = async () => {
+    try {
+      const response = await fetch(groupUrl);
+      const data = await response.json();
+      setGroups(data);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  }
+
+  const fetchData = async () => {
+    try {
+      url = `http://127.0.0.1:8000/api/events?studentid=${studentid}`;
+
+      const response = await fetch(url);
+      const data = await response.json();
+      const events = data.map(event => ({
+        title: event.title,
+        start: parse(event.start, 'yyyy-MM-dd\'T\'HH:mm:ss\'Z\'', new Date()),
+        end: parse(event.end, 'yyyy-MM-dd\'T\'HH:mm:ss\'Z\'', new Date()),
+      }));
+      setStudentData(events);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+   
+  const handleGroupChange = (event) => {
+    const value = event.target.value;
+    setSelectedGroup(value);
+    let groupid = value;
+    const groupUrl = `http://127.0.0.1:8000/api/events?groupid=${groupid}`;
+
+    const fetchData = async () => {
+      try {
+        const response = await fetch(groupUrl);
+        const data = await response.json();
+        const events = data.map(event => ({
+          title: event.title,
+          start: parse(event.start, 'yyyy-MM-dd\'T\'HH:mm:ss\'Z\'', new Date()),
+          end: parse(event.end, 'yyyy-MM-dd\'T\'HH:mm:ss\'Z\'', new Date()),
+        }));
+        setStudentData(events);
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    };
+
+  };
+
+ const handleOptionChange = (event) => {
+  const value = event.target.value;
+  setSelectedOption(value);
+  if (value === 'groupEvents') {
+    fetchGroups();
+  } else {
+    setGroups([]);
+    setSelectedGroup('');
+  }
+};
+
+useEffect(() => {
+  fetchGroups();
+}, [selectedGroup]);
+
+useEffect(() => {
+  fetchData();
+}, [url, selectedGroup]);
+
+  return (
+    <>
+      <BurgerMenu />
+      <div>
+        <div className="calendar">
+          <div style={{marginBottom: "20px"}}>
+            <p></p>
+            <p></p>
+            <Button style={{marginLeft: "20px"}}variant="contained" as={Link} to="/AddEvent">
+              Add Event
+            </Button>
+            <FormControl component="fieldset">
+              <RadioGroup row aria-label="eventOptions" name="eventOptions" value={selectedOption} onChange={handleOptionChange}>
+                <FormControlLabel value="studentEvents" control={<Radio />} label="Student Events" />
+                <FormControlLabel value="groupEvents" control={<Radio />} label="Group Events" />
+              </RadioGroup>
+              {selectedOption === 'groupEvents' && (
+                <Select style={{marginLeft: "20px"}} value={selectedGroup} onChange={handleGroupChange}>
+                  <MenuItem value="">All Groups</MenuItem>
+                  {groups.map(group => (
+                    <MenuItem key={group.groupid} value={group.groupid}>{group.name}</MenuItem>
+                  ))}
+                </Select>
+              )}
+            </FormControl>
+          </div>
+          <div>
+
 				<Calendar
 					events={data}
 					localizer={localizer}

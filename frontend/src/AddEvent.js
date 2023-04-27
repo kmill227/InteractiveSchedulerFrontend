@@ -22,7 +22,6 @@ import BurgerMenu from './components/BurgerNav';
         const [accesslevel, setAccessLevel] = useState(1);
         const [alert, setAlert] = useState(1);
 
-        
        let handleSubmit = (e) => {
             console.log({title});
             console.log({starttime});
