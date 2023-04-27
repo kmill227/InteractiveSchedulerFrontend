@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import './CalendarApp';
 import MyCalendar from "./CalendarApp";
 import BurgerMenu from './components/BurgerNav';
@@ -7,13 +7,13 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import { ListItemIcon } from '@material-ui/core';
-import { useState, useEffect } from 'react';
 import Burger from "./components/Burger";
-// imports
 
 export default function(){
+
     const [data, setData] = useState([]);
     const [weekData, setWeekData] = useState([]);
+
     const apiUrl = 'http://127.0.0.1:8000/api/events';
     let today = new Date();
     let tomorrow = new Date(today);
@@ -28,40 +28,55 @@ export default function(){
     yesterday = yesterday.toISOString();
     nextWeek = nextWeek.toISOString();
 
-    const params = {studentid: 1, timelt: tomorrow, timegt: yesterday};
+    const params = {studentid: 1, starttimelt: tomorrow, starttimegt: yesterday};
     let url = new URL(apiUrl);
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
-  
-    let resp = fetch(url, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }
-    });
 
-    resp.then(response => response.json())
-    .then(data => setData(data))
-    .catch(error => {
-      console.error('Error:', error);
-    });
-  
+    const fetchData = () => {
+        return new Promise((resolve, reject) => {
+            fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
+            .then(response => response.json())
+            .then(data => resolve(data))
+            .catch(error => reject(error));
+        });
+    }
 
+    const paramsWeek = {studentid: 1, starttimelt: nextWeek, starttimegt: yesterday};
     let urlWeek = new URL(apiUrl);
-    const paramsWeek = {studentid: 1, timelt: nextWeek, timegt: yesterday};
-    Object.keys(paramsWeek).forEach(key => url.searchParams.append(key, paramsWeek[key]));
+    Object.keys(paramsWeek).forEach(key => urlWeek.searchParams.append(key, paramsWeek[key]));
 
-    let respWeek = fetch(url, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }
-    });
+    const fetchWeekData = () => {
+        return new Promise((resolve, reject) => {
+            fetch(urlWeek, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            })
+            .then(response => response.json())
+            .then(data => resolve(data))
+            .catch(error => reject(error));
+        });
+    }
 
-    respWeek.then(response => response.json())
-    .then(weekData => setWeekData(weekData))
-    .catch(error => {
-      console.error('Error:', error);
-    });
+    useEffect(() => {
+        fetchData()
+        .then(data => setData(data))
+        .catch(error => {
+            console.error('Error:', error);
+        });
+
+        fetchWeekData()
+        .then(weekData => setWeekData(weekData))
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }, []);
 
     return (
         <>
@@ -76,8 +91,8 @@ export default function(){
     {data.map(elem => (
       <ListItem alignItems="flex-start">
         <ListItemText
-          primary = {elem.description}
-          secondary = {elem.time}
+          primary = {elem.title}
+          secondary = {elem.starttime}
         />
       </ListItem>
       ))}
@@ -90,8 +105,8 @@ export default function(){
                 {weekData.map(elemWeek => (
                     <ListItem alignItems="flex-start">
                         <ListItemText
-                        primary = {elemWeek.description}
-                        secondary = {elemWeek.time}
+                        primary = {elemWeek.title}
+                        secondary = {elemWeek.starttime}
                         />
                     </ListItem>
                 ))}

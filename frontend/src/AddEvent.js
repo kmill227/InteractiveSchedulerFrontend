@@ -17,15 +17,16 @@ import BurgerMenu from './components/BurgerNav';
 
 
     function AddEvent() {
-        const [description, setDescription] = useState("");
-        const [time, setTime] = useState("");
+        const [title, setTitle] = useState("");
+        const [starttime, setStartTime] = useState("");
+        const [endtime, setEndTime] = useState("");
         const [accesslevel, setAccessLevel] = useState(1);
         const [alert, setAlert] = useState(1);
 
         
        let handleSubmit = (e) => {
-            console.log({description});
-            console.log({time});
+            console.log({title});
+            console.log({starttime});
             console.log({alert});
             console.log({accesslevel});
         let res = fetch('http://127.0.0.1:8000/api/events', {
@@ -33,8 +34,9 @@ import BurgerMenu from './components/BurgerNav';
             method: "PUT",
             headers: {'Content-Type': 'multipart/form-data' },
             body : JSON.stringify({
-                "description": description,
-                "time": time,
+                "title": title,
+                "starttime": starttime,
+                "endtime" : endtime,
                 "accesslevel": accesslevel,
                 "alert": alert,
             }),
@@ -48,10 +50,12 @@ import BurgerMenu from './components/BurgerNav';
             <BurgerMenu />
         <Grid container spacing = {3} align="center" className="event-form">
             <Grid item xs={12} align="center">
-            <TextField label="Description" value={description} onChange={(e) => setDescription(e.target.value)} />
+            <TextField label="title" value={title} onChange={(e) => setTitle(e.target.value)} />
             </Grid>
             <Grid item xs={12} align="center">
-            <TextField label="" type="datetime-local" value={time} onChange={(e) => setTime(e.target.value)} />
+            <TextField InputProps={{placeholder: 'Start Time'}} type="datetime-local" value={starttime} onChange={(e) => setStartTime(e.target.value)} />            </Grid>
+            <Grid item xs={12} align="center">
+            <TextField label="End Time" type="datetime-local" value={endtime} onChange={(e) => setEndTime(e.target.value)} />
             </Grid>
             <Grid item xs={12} align="center">
                 <FormControl>
