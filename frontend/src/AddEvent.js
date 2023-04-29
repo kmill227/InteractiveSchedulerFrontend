@@ -11,6 +11,8 @@ import BurgerMenu from './components/BurgerNav';
 import {Select, MenuItem } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from '@mui/material';
+
 // imports
 
 
@@ -30,6 +32,7 @@ import Cookies from 'js-cookie';
         const url = `http://127.0.0.1:8000/api/events`;
         const groupUrl = `http://127.0.0.1:8000/api/groups?studentid=${studentid}`;
         const navigate = useNavigate();
+        const [open, setOpen] = useState(false);
 
         const fetchGroups = async () => {
             try {
@@ -73,6 +76,7 @@ import Cookies from 'js-cookie';
         });
         res.then(response => response.text())   
         .catch(error => console.log("Error detected: " + error))
+        setOpen(true);
     } 
 
     const fetchData= async () => {
@@ -189,6 +193,19 @@ import Cookies from 'js-cookie';
                     <Button type="submit" onClick={handleCancel} color="secondary" variant='contained'>Cancel</Button>
             </Grid>
             </Grid>
+            <Dialog open={open} onClose={() => setOpen(false)}>
+                <DialogTitle>Event Added</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        Your event has been added successfully.
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={() => navigate('/CalendarApp')} color="primary" autoFocus>
+                     OK
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </>
     );
 }

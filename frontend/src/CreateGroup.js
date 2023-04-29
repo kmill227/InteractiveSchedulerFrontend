@@ -41,20 +41,20 @@ import { Button, Grid, TextField, Dialog, DialogTitle, DialogContent, DialogCont
             <BurgerMenu />
             <br></br>
             <h2 style={{ textAlign: "center" }}>Create Group</h2>
-        <Grid container spacing = {3} align="center" className="event-form">
-            <Grid item xs={12} align="center">
-                <TextField label="Group Name" value={name} onChange={(e) => setName(e.target.value)} />
+            <Grid container spacing = {3} align="center" className="event-form">
+                <Grid item xs={12} align="center">
+                    <TextField label="Group Name" value={name} onChange={(e) => setName(e.target.value)} />
+                </Grid>
+                <Grid item xs={12} align="center">
+                    <TextField label="Description" value={description} onChange={(e) => setDescription(e.target.value)} />
+                </Grid>
+                <Grid item xs={12}>
+                    <Button type="submit" onClick={handleSubmit} color="primary" variant='contained'>Create Group</Button>
+                </Grid>
+                <Grid item xs={12} align="center">
+                        <Button type="submit" onClick={handleCancel} color="error" variant='contained'>Cancel</Button>
+                </Grid>
             </Grid>
-            <Grid item xs={12} align="center">
-                <TextField label="Description" value={description} onChange={(e) => setDescription(e.target.value)} />
-            </Grid>
-            <Grid item xs={12}>
-                 <Button type="submit" onClick={handleSubmit} color="primary" variant='contained'>Create Group</Button>
-            </Grid>
-            <Grid item xs={12} align="center">
-                    <Button type="submit" onClick={handleCancel} color="error" variant='contained'>Cancel</Button>
-            </Grid>
-        </Grid>
             <Dialog open={open} onClose={() => setOpen(false)}>
                 <DialogTitle>Group Added</DialogTitle>
                 <DialogContent>
