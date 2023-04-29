@@ -105,22 +105,36 @@ import Cookies from 'js-cookie';
         return (
             <>
             <BurgerMenu />
+            <br></br>
             <h2 style={{ textAlign: "center" }}>Create Event</h2>
             <Grid container spacing = {3} align="center" className="event-form">
                 <Grid item xs={12} align="center" className="eventTitle">
-                <TextField label="title" value={title} onChange={(e) => setTitle(e.target.value)}/>
+                    <TextField 
+                        label="title" 
+                        value={title} 
+                        onChange={(e) => setTitle(e.target.value)}
+                    />
                 </Grid>
-                <Grid item xs={6} align="right">
-                <InputLabel shrink htmlFor="start-time-input">
-                    Start Time
-                </InputLabel>
-                <TextField id="start-time-input" type="datetime-local" value={start} onChange={(e) => setStartTime(e.target.value)}/>         
+                <Grid item xs={12} align="center">
+                    <TextField
+                        id="date"
+                        label="Start Time"
+                        type="datetime-local"
+                        color="secondary" 
+                        value={start} 
+                        onChange={(e) => setStartTime(e.target.value)}  
+                        InputLabelProps={{ shrink: true }} 
+                    />
                 </Grid>
-                <Grid item xs={6} align="left" alignItems="flex-start">
-                <InputLabel shrink htmlFor="end-time-input">
-                    End Time
-                </InputLabel>
-                <TextField id="end-time-input" type="datetime-local" value={end} onChange={(e) => setEndTime(e.target.value)}/>
+                <Grid item xs={12} align="center" alignItems="flex-start">
+                    <TextField id="date"
+                        label="End Time"
+                        type="datetime-local"
+                        color="secondary"  
+                        value={end} 
+                        onChange={(e) => setEndTime(e.target.value)} 
+                        InputLabelProps={{ shrink: true }} 
+                    />
                 </Grid>
                 <Grid item xs={6} align="right">
                     <FormControl>
