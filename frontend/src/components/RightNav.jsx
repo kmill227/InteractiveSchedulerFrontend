@@ -38,6 +38,7 @@ const RightNav = ({ open }) => {
       <li><a href="../Groups" id="link">Groups</a></li>
       <li><a href="../CalendarApp" id="link">Calendar</a></li>
       <li><a href="../Messages" id="link">Messages</a></li>
+      <li><a href="../Account" id="link">Account</a></li>
       <li><a href="../Support" id="link">Support</a></li>
       <li><a href="../Logout" id="link">Logout</a></li>
     </Ul>

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import './CalendarApp';
-import MyCalendar from "./CalendarApp";
 import BurgerMenu from './components/BurgerNav';
 import "./font/ChangaOne-Regular.ttf";
 import List from '@mui/material/List';
@@ -89,34 +88,38 @@ export default function(){
         <BurgerMenu/>                   {/*navbar*/}
         <h1 id="homeHeader">Home</h1>
         <div id="Home_mainContent">
-        <h2>Today's Events:</h2>
-        <List sx={{ width: '100%', maxWidth: 360,}}>   {/*styling*/}
-    <br/>
-    {data.map(elem => (
-      <ListItem alignItems="flex-start">
-        <ListItemText
-          primary = {<h3>{elem.title}</h3>}
-          secondary = {new Date(elem.start).toLocaleString('en-US')}
-          sx={{ fontSize: '3rem' }}
-        />
-      </ListItem>
-      ))}
-      </List>
-
-        <h2>Upcoming Events:</h2>
-            <List sx={{ width: '100%', maxWidth: 360,}}> {/*styling*/}
-            <br/>
-                {weekData.map(elemWeek => (
-                    <ListItem alignItems="flex-start">
+            <h2>Today's Events:</h2>
+            <List sx={{ width: '100%', maxWidth: 360,}}>   {/*styling*/}
+             <br/>
+                {data.map(elem => (
+                    <ListItem 
+                    alignItems="flex-start"
+                    sx={{ border: '1px solid gray', borderRadius: '5px', mb: 2 }}>
                         <ListItemText
-                        primary = {<h3>{elemWeek.title}</h3>}
-                        secondary = {new Date(elemWeek.start).toLocaleString('en-US')}
-                        sx={{ fontSize: '3rem' }}
+                            primary = {<h3>{elem.title}</h3>}
+                            secondary = {new Date(elem.start).toLocaleString('en-US')}
+                            sx={{ fontSize: '3rem' }}
                         />
                     </ListItem>
                 ))}
+            </List>
+
+            <h2>Upcoming Events:</h2>
+                <List sx={{ width: '100%', maxWidth: 360,}}> {/*styling*/}
+                <br/>
+                    {weekData.map(elemWeek => (
+                        <ListItem 
+                        alignItems="flex-start"
+                        sx={{ border: '1px solid gray', borderRadius: '5px', mb: 2 }}>
+                            <ListItemText
+                            primary = {<h3>{elemWeek.title}</h3>}
+                            secondary = {new Date(elemWeek.start).toLocaleString('en-US')}
+                            sx={{ fontSize: '3rem' }}
+                            />
+                        </ListItem>
+                    ))}
                 </List>
-        </div>
+            </div>
         </div>
         </>
     );

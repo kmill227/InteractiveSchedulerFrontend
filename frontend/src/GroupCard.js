@@ -19,7 +19,7 @@ import Cookies from 'js-cookie';
 
 export default function GroupCard() {
   const cookieData = Cookies.get('userInfo');
-  const studentid = JSON.parse(cookieData).studentid;
+  const studentid = JSON.parse(cookieData).studentid; 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
