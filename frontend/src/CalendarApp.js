@@ -119,7 +119,7 @@ useEffect(() => {
             <Button style={{marginLeft: "20px"}}variant="contained" as={Link} to="/AddEvent">
               Add Event
             </Button>
-            <FormControl component="fieldset">
+            <FormControl component="fieldset" style={{marginLeft: "5%"}}>
               <RadioGroup row aria-label="eventOptions" name="eventOptions" value={selectedOption} onChange={handleOptionChange}>
                 <FormControlLabel value="studentEvents" control={<Radio />} label="Student Events" />
                 <FormControlLabel value="groupEvents" control={<Radio />} label="Group Events" />
