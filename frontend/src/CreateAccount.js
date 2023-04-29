@@ -1,12 +1,13 @@
 import React, {useState} from "react";
 import './CalendarApp';
-import MyCalendar from "./CalendarApp";
-import BurgerMenu from './components/BurgerNav';
 import "./font/ChangaOne-Regular.ttf";
 import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import {Button} from '@material-ui/core';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
+
 // imports
 
 export default function(){
@@ -18,6 +19,7 @@ export default function(){
     const [address, setAddress] = useState("");
     const [phoneNumber, setPhone] = useState("");
     const [userName, setUserName] = useState("");
+    const navigate = useNavigate();
 
     
    let handleSubmit = (e) => {
@@ -39,34 +41,38 @@ export default function(){
     });
     res.then(response => response.text())   
     .catch(error => console.log("Error detected: " + error))
+
+    alert("Account created successfully!");
+
 }
 return (
     <>
-        <BurgerMenu/>
-        <Grid container spacing = {3} align="center" className="event-form">
-            <Grid item xs={12} align="center">
-            <TextField type="Email" label="Email" required="true" value={email} onChange={(e) => setEmail(e.target.value)} />
+    <br></br>
+    <h2 style={{ textAlign: "center" }}>Create Account</h2>
+        <Grid sx={{ margin: 'auto' }} container spacing = {3} align="center">
+            <Grid item xs={4} align="right">
+            <TextField type="Email" label="Email" required value={email} onChange={(e) => setEmail(e.target.value)} variant="filled"/>
+            </Grid>
+            <Grid item xs={4} align="center">
+            <TextField type="text" label="Username" required value={userName} onChange={(e) => setUserName(e.target.value)} variant="filled"/>
+            </Grid>
+            <Grid item xs={4} align="left">
+            <TextField label="Password" type="password" required value={password} onChange={(e) => setPassword(e.target.value)} variant="filled"/>
+            </Grid>
+            <Grid item xs={4} align="right">
+            <TextField label="First Name" value={firstName} required onChange={(e) => setFirstName(e.target.value)} variant="filled"/>
+            </Grid>
+            <Grid item xs={4} align="center">
+            <TextField label="Last Name" value={lastName} required onChange={(e) => setLastName(e.target.value)} variant="filled"/>
+            </Grid>
+            <Grid item xs={4} align="left">
+                <TextField label="Address" value={address} required onChange={(e) => setAddress(e.target.value)} variant="filled"/>
+            </Grid>
+            <Grid item xs={4} align="right">
+                <TextField label="Phone Number" type="tel" value={phoneNumber} onChange={(e) => setPhone(e.target.value)} variant="filled"/>
             </Grid>
             <Grid item xs={12} align="center">
-            <TextField type="text" label="Username" required="true" value={userName} onChange={(e) => setUserName(e.target.value)} />
-            </Grid>
-            <Grid item xs={12} align="center">
-            <TextField label="Password" type="password" required="true" value={password} onChange={(e) => setPassword(e.target.value)} />
-            </Grid>
-            <Grid item xs={12} align="center">
-            <TextField label="First Name" value={firstName} required="true" onChange={(e) => setFirstName(e.target.value)} />
-            </Grid>
-            <Grid item xs={12} align="center">
-            <TextField label="Last Name" value={lastName} required="true" onChange={(e) => setLastName(e.target.value)} />
-            </Grid>
-            <Grid item xs={12} align="center">
-                <TextField label="Address" value={address} required= "true" onChange={(e) => setAddress(e.target.value)} />
-            </Grid>
-            <Grid item xs={12} align="center">
-                <TextField label="Phone Number" type="tel" value={phoneNumber} onChange={(e) => setPhone(e.target.value)} />
-            </Grid>
-            <Grid item xs={12}>
-                <Button type="submit" onClick={handleSubmit} color="primary" variant='contained'>Create Account</Button>
+                <Button component={Link} to="/Login" type="submit" onClick={() => {handleSubmit(); navigate('/Login')}} color="primary" variant='contained' disabled={!email || !password || !firstName || !lastName || !address || !phoneNumber || !userName}>Create Account</Button>
             </Grid>
         </Grid>
     </>

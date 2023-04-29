@@ -24,7 +24,7 @@ import Cookies from 'js-cookie';
         const [data, setStudentData] = useState([]);
         const [selectedGroup, setSelectedGroup] = useState('');
         const [groups, setGroups] = useState([]);
-        const [selectedOption, setSelectedOption] = useState('studentEvents');
+        const [selectedOption, setSelectedOption] = useState(null);
         const [requestBody, setRequestBody] = useState({});
         const url = `http://127.0.0.1:8000/api/events`;
         const groupUrl = `http://127.0.0.1:8000/api/groups?studentid=${studentid}`;
@@ -41,6 +41,16 @@ import Cookies from 'js-cookie';
           }
        
         let handleSubmit = (e) => {
+            if (selectedOption === "studentEvents"){
+                setRequestBody({
+                    "title": title,
+                    "start": start,
+                    "end" : end,
+                    "accesslevel": accesslevel,
+                    "alert": alert,
+                    "studentid": studentid,
+               })
+            }
             console.log(requestBody);
             let res = fetch('http://127.0.0.1:8000/api/events', {
 
@@ -89,6 +99,8 @@ import Cookies from 'js-cookie';
         setSelectedGroup('');
       }
     };
+
+
         return (
             <>
             <BurgerMenu />
@@ -123,8 +135,8 @@ import Cookies from 'js-cookie';
             <Grid item xs={12} align="center">
             <FormControl component="fieldset">
               <RadioGroup row aria-label="eventOptions" name="eventOptions" value={selectedOption} onChange={handleOptionChange}>
-                <FormControlLabel value="studentEvents" control={<Radio />} label="Student Events" />
-                <FormControlLabel value="groupEvents" control={<Radio />} label="Group Events" />
+                <FormControlLabel value="studentEvents" control={<Radio checked={selectedOption === 'studentEvents' ? true : false} />} label="Student Event" />
+                <FormControlLabel value="groupEvents" control={<Radio checked={selectedOption === 'groupEvents' ? true : false} />} label="Group Event" />
               </RadioGroup>
               {selectedOption === 'groupEvents' && (
                 <Select style={{marginLeft: "20px"}} value={selectedGroup} onChange={handleGroupChange}>

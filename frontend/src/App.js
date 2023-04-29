@@ -13,6 +13,8 @@ import CreateGroup from './CreateGroup';
 import CreateAccount from './CreateAccount';
 import Account from './Account';
 import Notifications from './Notifications'
+import Logout from './Logout';
+
 import "./font/ChangaOne-Regular.ttf";
 import "./font/Raleway-Regular.ttf";
 // imports
@@ -34,6 +36,8 @@ function App() {
             <Route path='/Account' element={<Account/>} /> {/*account page */}
             <Route path='/Notifications' element={<Notifications/>} /> {/*notfications page */}
             <Route path='/CreateAccount' element={<CreateAccount/>} /> {/*create an account */}
+            <Route path='/Login' element={<Login/>} /> {/*login page */}
+            <Route path='/Logout' element={<Logout/>} /> {/*logout modal */}
           </Routes>
         </div>
       </Router>

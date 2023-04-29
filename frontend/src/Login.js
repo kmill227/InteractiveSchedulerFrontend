@@ -8,6 +8,8 @@ import {
   Button
 } from '@material-ui/core';
 import Cookies from 'js-cookie';
+import { Link } from 'react-router-dom';
+
 // imports
 
 const LoginPage = () => {
@@ -94,6 +96,11 @@ const LoginPage = () => {
           </Grid>
           <Grid item xs={12}>
             <Button type="submit" onClick={handleSubmit} fullWidth> Login </Button>
+          </Grid>
+          <Grid item xs={12}>
+            <Button component={Link} to="/CreateAccount" fullWidth>
+              Create Account
+            </Button>
           </Grid>
         </Grid>
       </Paper>
