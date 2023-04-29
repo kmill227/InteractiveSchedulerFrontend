@@ -52,6 +52,17 @@ import Cookies from 'js-cookie';
                     "studentid": studentid,
                })
             }
+            else if (selectedOption === "groupEvents"){
+                setRequestBody({
+                    "title": title,
+                    "start": start,
+                    "end" : end,
+                    "accesslevel": accesslevel,
+                    "alert": alert,
+                    "groupid": selectedGroup,
+               })
+
+            }
             console.log(requestBody);
             let res = fetch('http://127.0.0.1:8000/api/events', {
 
