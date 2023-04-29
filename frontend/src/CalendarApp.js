@@ -5,7 +5,6 @@ import { render } from "react-dom";
 import { Calendar, dateFnsLocalizer } from 'react-big-calendar'
 import { format, parse, startOfWeek, getDay } from "date-fns";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import AddEvent from './AddEvent';
 import Button from '@mui/material/Button';
 import FormControl from "@material-ui/core/FormControl";
 import { Link } from "react-router-dom";
@@ -36,9 +35,9 @@ const MyCalendar = () => {
   const [selectedGroup, setSelectedGroup] = useState('');
   const [groups, setGroups] = useState([]);
   const [selectedOption, setSelectedOption] = useState('studentEvents');
-  const eventUrl = 'http://127.0.0.1:8000/api/events';
-  const groupUrl = `http://127.0.0.1:8000/api/groups?studentid=${studentid}`;
-  let url = 'http://127.0.0.1:8000/api/events';
+  let eventUrl = 'http://127.0.0.1:8000/api/events';
+  let groupUrl = `http://127.0.0.1:8000/api/groups?studentid=${studentid}`;
+  let url = `http://127.0.0.1:8000/api/events?studentid=${studentid}`;
 
   let today = new Date();
   let tomorrow = new Date(today);
@@ -56,10 +55,9 @@ const MyCalendar = () => {
     }
   }
 
-  const fetchData = async () => {
+  const fetchData= async (url) => {
     try {
       url = `http://127.0.0.1:8000/api/events?studentid=${studentid}`;
-
       const response = await fetch(url);
       const data = await response.json();
       const events = data.map(event => ({
@@ -78,22 +76,17 @@ const MyCalendar = () => {
     setSelectedGroup(value);
     let groupid = value;
     const groupUrl = `http://127.0.0.1:8000/api/events?groupid=${groupid}`;
-
-    const fetchData = async () => {
-      try {
-        const response = await fetch(groupUrl);
-        const data = await response.json();
+    fetch(groupUrl)
+      .then(response => response.json())
+      .then(data => {
         const events = data.map(event => ({
           title: event.title,
           start: parse(event.start, 'yyyy-MM-dd\'T\'HH:mm:ss\'Z\'', new Date()),
           end: parse(event.end, 'yyyy-MM-dd\'T\'HH:mm:ss\'Z\'', new Date()),
         }));
         setStudentData(events);
-      } catch (error) {
-        console.error('Error:', error);
-      }
-    };
-
+      })
+      .catch(error => console.error(error));
   };
 
  const handleOptionChange = (event) => {
@@ -102,6 +95,7 @@ const MyCalendar = () => {
   if (value === 'groupEvents') {
     fetchGroups();
   } else {
+    fetchData();
     setGroups([]);
     setSelectedGroup('');
   }
@@ -112,9 +106,8 @@ useEffect(() => {
 }, [selectedGroup]);
 
 useEffect(() => {
-  fetchData();
-}, [url, selectedGroup]);
-
+  fetchData(url);
+}, []);
   return (
     <>
       <BurgerMenu />
@@ -133,7 +126,6 @@ useEffect(() => {
               </RadioGroup>
               {selectedOption === 'groupEvents' && (
                 <Select style={{marginLeft: "20px"}} value={selectedGroup} onChange={handleGroupChange}>
-                  <MenuItem value="">All Groups</MenuItem>
                   {groups.map(group => (
                     <MenuItem key={group.groupid} value={group.groupid}>{group.name}</MenuItem>
                   ))}

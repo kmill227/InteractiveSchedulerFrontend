@@ -61,20 +61,21 @@ export default function GroupCard() {
       .catch(error => console.log("Error detected: " + error))
    }
 
-   let handleJoinGroup = (nameValue, descriptionValue) => {
+   let handleJoinGroup = (groupid) => {
     
-    let res = fetch('http://127.0.0.1:8000/api/groups', {
+    let res = fetch('http://127.0.0.1:8000/api/addtogroup', {
         method: "PUT",
         headers: {'Content-Type': 'multipart/form-data' },
         body : JSON.stringify({
-            'name': nameValue,
-            'description' : descriptionValue,
-            'studentid': studentid
+            'studentid' : studentid,
+            'groupid': groupid
         }),
         
     });
     res.then(response => response.text())   
     .catch(error => console.log("Error detected: " + error))
+
+    alert("Joined Group!");
  }
   const style = {
     position: 'absolute',
@@ -145,7 +146,7 @@ export default function GroupCard() {
       alignItems="flex-start"
   >
       {mydata.map(myelem => (
-          <Grid item xs={12} sm={6} md={3} key={mydata.indexOf(myelem)}>
+          <Grid item xs={12} sm={6} md={3} key={myelem.groupid}>
               <Card>
                   <CardHeader
                       title={`${myelem.name}`} variant="h5"
@@ -182,7 +183,7 @@ export default function GroupCard() {
       alignItems="flex-start"
   >
       {data.map(elem => (
-          <Grid item xs={12} sm={6} md={3} key={data.indexOf(elem)}>
+          <Grid item xs={12} sm={6} md={3} key={elem.groupid}>
               <Card>
                   <CardHeader
                       title={`${elem.name}`} variant="h5"
@@ -191,7 +192,7 @@ export default function GroupCard() {
                     {elem.description}
                   </CardContent>
       <CardActions className={"cardButton"}>
-        <Button type="submit" size="small" onClick={() => handleJoinGroup(elem.name, elem.description)}>Join Group</Button>
+        <Button type="submit" size="small" onClick={() => handleJoinGroup(elem.groupid)}>Join Group</Button>
       </CardActions>
               </Card>
               <Modal

@@ -113,10 +113,10 @@ let touser = 1;
   <Box sx={style}>
   <Grid container spacing = {3} align="center" className="message-form">
             <Grid item xs={12} align="center">
-                <TextField label="to" value={to} onChange={(e) => setTo(e.target.value)} />
+                <TextField label="Email" value={to} onChange={(e) => setTo(e.target.value)} />
             </Grid>
             <Grid item xs={12} align="center">
-                <TextField label="msgcontent" value={msgContent} onChange={(e) => setMsgContent(e.target.value)} />
+                <TextField label="Message" value={msgContent} onChange={(e) => setMsgContent(e.target.value)} />
             </Grid>
             <Grid item xs={12}>
                  <Button type="submit" onClick={handleSubmit} color="primary" variant='contained'>Send</Button>

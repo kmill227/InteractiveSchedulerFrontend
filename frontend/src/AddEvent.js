@@ -1,61 +1,107 @@
 import React, { useState } from 'react';
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import FormControl from "@material-ui/core/FormControl";
-import { Link } from "react-router-dom";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import { Component } from "react";
 import FormLabel from '@mui/material/FormLabel';
-import axios from 'axios';
 import BurgerMenu from './components/BurgerNav';
+import {Select, MenuItem } from '@mui/material';
+import Cookies from 'js-cookie';
 // imports
 
 
     function AddEvent() {
         const [title, setTitle] = useState("");
-        const [starttime, setStartTime] = useState("");
-        const [endtime, setEndTime] = useState("");
+        const [start, setStartTime] = useState("");
+        const [end, setEndTime] = useState("");
         const [accesslevel, setAccessLevel] = useState(1);
         const [alert, setAlert] = useState(1);
+        const cookieData = Cookies.get('userInfo');
+        const studentid = JSON.parse(cookieData).studentid;
+        const [data, setStudentData] = useState([]);
+        const [selectedGroup, setSelectedGroup] = useState('');
+        const [groups, setGroups] = useState([]);
+        const [selectedOption, setSelectedOption] = useState('studentEvents');
+        const [requestBody, setRequestBody] = useState({});
+        const url = `http://127.0.0.1:8000/api/events`;
+        const groupUrl = `http://127.0.0.1:8000/api/groups?studentid=${studentid}`;
 
-       let handleSubmit = (e) => {
-            console.log({title});
-            console.log({starttime});
-            console.log({alert});
-            console.log({accesslevel});
-        let res = fetch('http://127.0.0.1:8000/api/events', {
+
+        const fetchGroups = async () => {
+            try {
+              const response = await fetch(groupUrl);
+              const data = await response.json();
+              setGroups(data);
+            } catch (error) {
+              console.error('Error:', error);
+            }
+          }
+       
+        let handleSubmit = (e) => {
+            console.log(requestBody);
+            let res = fetch('http://127.0.0.1:8000/api/events', {
 
             method: "PUT",
-            headers: {'Content-Type': 'multipart/form-data' },
-            body : JSON.stringify({
-                "title": title,
-                "starttime": starttime,
-                "endtime" : endtime,
-                "accesslevel": accesslevel,
-                "alert": alert,
-            }),
+            headers: {'Content-Type': 'application/json' },
+            body : JSON.stringify(requestBody),
             
         });
         res.then(response => response.text())   
         .catch(error => console.log("Error detected: " + error))
     } 
+
+    const fetchData= async () => {
+       setRequestBody({
+            "title": title,
+            "start": start,
+            "end" : end,
+            "accesslevel": accesslevel,
+            "alert": alert,
+            "studentid": studentid,
+       });
+      };
+
+    const handleGroupChange = (event) => {
+        const value = event.target.value;
+        setSelectedGroup(value);
+        let groupid = value
+        setRequestBody({
+            "title": title,
+            "start": start,
+            "end" : end,
+            "accesslevel": accesslevel,
+            "alert": alert,
+            "groupid": groupid,
+        });  
+      };
+    
+     const handleOptionChange = (event) => {
+      const value = event.target.value;
+      setSelectedOption(value);
+      if (value === 'groupEvents') {
+        fetchGroups();
+      } else {
+        fetchData();
+        setGroups([]);
+        setSelectedGroup('');
+      }
+    };
         return (
             <>
             <BurgerMenu />
         <Grid container spacing = {3} align="center" className="event-form">
-            <Grid item xs={12} align="center">
-            <TextField label="title" value={title} onChange={(e) => setTitle(e.target.value)} />
+            <Grid item xs={12} align="center" className="eventTitle">
+            <TextField label="title" value={title} onChange={(e) => setTitle(e.target.value)} variant="outlined"/>
             </Grid>
             <Grid item xs={12} align="center">
-            <TextField Label="Start 
-            time" InputLabelProps={{shrink: true}} type="datetime-local" value={starttime} onChange={(e) => setStartTime(e.target.value)} />         
+            <TextField label="Start 
+            Time" type="datetime-local" value={start} onChange={(e) => setStartTime(e.target.value)} variant="outlined"/>         
             </Grid>
             <Grid item xs={12} align="center">
-            <TextField label="End Time" type="datetime-local" value={endtime} onChange={(e) => setEndTime(e.target.value)} />
+            <TextField label="End Time" type="datetime-local" value={end} onChange={(e) => setEndTime(e.target.value)} variant="outlined"/>
             </Grid>
             <Grid item xs={12} align="center">
                 <FormControl>
@@ -73,6 +119,21 @@ import BurgerMenu from './components/BurgerNav';
             </Grid>
             <Grid item xs={12} align="center">
                 <TextField label="Access Level" type="number" value={accesslevel} onChange={(e) => setAccessLevel(e.target.value)} InputProps={{ inputProps: { min: 0, max: 5 } }} />
+            </Grid>
+            <Grid item xs={12} align="center">
+            <FormControl component="fieldset">
+              <RadioGroup row aria-label="eventOptions" name="eventOptions" value={selectedOption} onChange={handleOptionChange}>
+                <FormControlLabel value="studentEvents" control={<Radio />} label="Student Events" />
+                <FormControlLabel value="groupEvents" control={<Radio />} label="Group Events" />
+              </RadioGroup>
+              {selectedOption === 'groupEvents' && (
+                <Select style={{marginLeft: "20px"}} value={selectedGroup} onChange={handleGroupChange}>
+                  {groups.map(group => (
+                    <MenuItem key={group.groupid} value={group.groupid}>{group.name}</MenuItem>
+                  ))}
+                </Select>
+              )}
+            </FormControl>
             </Grid>
             <Grid item xs={12}>
                  <Button type="submit" onClick={handleSubmit} color="primary" variant='contained'>Add Event</Button>

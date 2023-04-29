@@ -12,10 +12,9 @@ import Cookies from 'js-cookie';
 
 export default function(){
     const cookieData = Cookies.get('userInfo');
-    console.log(JSON.parse(cookieData).studentid);
+    const studentid = JSON.parse(cookieData).studentid;
     const [data, setData] = useState([]);
     const [weekData, setWeekData] = useState([]);
-
     const apiUrl = 'http://127.0.0.1:8000/api/events';
     let today = new Date();
     let tomorrow = new Date(today);
@@ -30,7 +29,7 @@ export default function(){
     yesterday = yesterday.toISOString();
     nextWeek = nextWeek.toISOString();
 
-    const params = {studentid: 1, starttimelt: tomorrow, starttimegt: yesterday};
+    const params = {studentid: studentid, starttimelt: tomorrow, starttimegt: yesterday};
     let url = new URL(apiUrl);
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
 
@@ -43,12 +42,14 @@ export default function(){
                 }
             })
             .then(response => response.json())
-            .then(data => resolve(data))
+            .then(data => {
+                data.sort((a, b) => new Date(a.start) - new Date(b.start));
+                resolve(data);})
             .catch(error => reject(error));
         });
     }
 
-    const paramsWeek = {studentid: 1, starttimelt: nextWeek, starttimegt: yesterday};
+    const paramsWeek = {studentid: studentid, starttimelt: nextWeek, starttimegt: yesterday};
     let urlWeek = new URL(apiUrl);
     Object.keys(paramsWeek).forEach(key => urlWeek.searchParams.append(key, paramsWeek[key]));
 
@@ -61,9 +62,9 @@ export default function(){
                 }
             })
             .then(response => response.json())
-            .then(data =>
-            resolve(data)
-            )
+            .then(data => {
+                data.sort((a, b) => new Date(a.start) - new Date(b.start));
+                resolve(data);})
             .catch(error => reject(error));
         });
     }
@@ -89,38 +90,32 @@ export default function(){
         <h1 id="homeHeader">Home</h1>
         <div id="Home_mainContent">
         <h2>Today's Events:</h2>
-        <p>
         <List sx={{ width: '100%', maxWidth: 360,}}>   {/*styling*/}
     <br/>
     {data.map(elem => (
       <ListItem alignItems="flex-start">
         <ListItemText
-          primary = {elem.title}
-          secondary = {elem.starttime}
+          primary = {<h3>{elem.title}</h3>}
+          secondary = {new Date(elem.start).toLocaleString('en-US')}
+          sx={{ fontSize: '3rem' }}
         />
       </ListItem>
       ))}
       </List>
-        </p>
+
         <h2>Upcoming Events:</h2>
-        <p>
             <List sx={{ width: '100%', maxWidth: 360,}}> {/*styling*/}
             <br/>
                 {weekData.map(elemWeek => (
                     <ListItem alignItems="flex-start">
                         <ListItemText
-                        primary = {elemWeek.title}
-                        secondary = {elemWeek.starttime}
+                        primary = {<h3>{elemWeek.title}</h3>}
+                        secondary = {new Date(elemWeek.start).toLocaleString('en-US')}
+                        sx={{ fontSize: '3rem' }}
                         />
                     </ListItem>
                 ))}
                 </List>
-        </p>
-        <br></br>
-        <br></br>
-        <h2>Announcements:</h2>
-        <p id="Announcment">Today Jazz Club will be meeting @ 7:30PM in the Lounge. There will be snacks and fun to be had!</p>
-        <p>Email jazzguy@kent.edu for more info.</p>
         </div>
         </div>
         </>
