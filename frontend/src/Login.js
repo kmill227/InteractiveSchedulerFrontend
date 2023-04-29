@@ -26,12 +26,6 @@ const LoginPage = () => {
 
   let handleSubmit = (e) => {
     e.preventDefault();
-    const passwordRegex = /^[a-zA-Z0-9]+$/;
-
-    if (!passwordRegex.test(pwd)){
-      alert('Please only use numbers and letters for password')
-      return;
-    }
     fetch('http://127.0.0.1:8000/api/login', {
         method: "POST",
         headers: {'Content-Type': 'application/json' },
@@ -43,9 +37,8 @@ const LoginPage = () => {
     .then(response => {
       if (response.status === 202) {
         response.json().then(data => {
-          alert(data);
-          // Create a cookie that expires in 1 hour
-          const expires = new Date(Date.now() + 3600000);
+          // Create a cookie that expires in 1 day
+          const expires = new Date(Date.now() + 3600000 * 24);
           Cookies.set('userInfo', JSON.stringify(data), { expires });
           setTimeout(() => {
             const cookieData = Cookies.get('userInfo');
