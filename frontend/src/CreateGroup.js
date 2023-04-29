@@ -31,6 +31,11 @@ import { Button, Grid, TextField, Dialog, DialogTitle, DialogContent, DialogCont
         setOpen(true);
 
     } 
+
+    let handleCancel = () => {
+        navigate('/Groups'); // redirect to the group page
+    }
+    
         return (
             <>
             <BurgerMenu />
@@ -45,6 +50,9 @@ import { Button, Grid, TextField, Dialog, DialogTitle, DialogContent, DialogCont
             </Grid>
             <Grid item xs={12}>
                  <Button type="submit" onClick={handleSubmit} color="primary" variant='contained'>Create Group</Button>
+            </Grid>
+            <Grid item xs={12} align="center">
+                    <Button type="submit" onClick={handleCancel} color="error" variant='contained'>Cancel</Button>
             </Grid>
         </Grid>
             <Dialog open={open} onClose={() => setOpen(false)}>

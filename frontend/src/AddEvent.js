@@ -9,7 +9,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormLabel from '@mui/material/FormLabel';
 import BurgerMenu from './components/BurgerNav';
 import {Select, MenuItem } from '@mui/material';
-import { InputLabel } from '@material-ui/core';
+import { Link, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 // imports
 
@@ -29,7 +29,7 @@ import Cookies from 'js-cookie';
         const [requestBody, setRequestBody] = useState({});
         const url = `http://127.0.0.1:8000/api/events`;
         const groupUrl = `http://127.0.0.1:8000/api/groups?studentid=${studentid}`;
-
+        const navigate = useNavigate();
 
         const fetchGroups = async () => {
             try {
@@ -101,7 +101,9 @@ import Cookies from 'js-cookie';
       }
     };
 
-
+    let handleCancel = () => {
+        navigate('/Home'); // redirect to the login page
+    }
         return (
             <>
             <BurgerMenu />
@@ -172,6 +174,9 @@ import Cookies from 'js-cookie';
                 <Grid item xs={12}>
                     <Button type="submit" onClick={handleSubmit} color="primary" variant='contained'>Add Event</Button>
                 </Grid>
+                <Grid item xs={12} align="center">
+                    <Button type="submit" onClick={handleCancel} color="secondary" variant='contained'>Cancel</Button>
+            </Grid>
             </Grid>
         </>
     );
