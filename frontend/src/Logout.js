@@ -18,6 +18,9 @@ export default function Logout(){
         Cookies.remove('userInfo'); // remove the auth_token cookie
         navigate('/Login'); // redirect to the login page
     }
+    let handleCancel = () => {
+        navigate('/Home'); // redirect to the login page
+    }
 
     let handleRadioChange = (e) => {
         if (e.target.value === "yes") {
@@ -42,6 +45,9 @@ export default function Logout(){
                 </Grid>
                 <Grid item xs={12} align="center">
                     <Button type="submit" onClick={handleLogout} color="primary" variant='contained' disabled={!logoutConfirmed}>Logout</Button>
+                </Grid>
+                <Grid item xs={12} align="center">
+                    <Button type="submit" onClick={handleCancel} color="secondary" variant='contained'>Cancel</Button>
                 </Grid>
             </Grid>
         </>
