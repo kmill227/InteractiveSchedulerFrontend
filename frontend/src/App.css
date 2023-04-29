@@ -53,8 +53,11 @@ url("./font/ChangaOne-Regular.ttf") format("truetype");
 /* react css */
 
 
-.groupCards, .groups, .groupButton {
-  margin: 10px;
+.groupCards, .groups {
+  margin: 1%;
+}
+.groupButton {
+  margin: 10%;
 }
 /* group card spacing */
 .Cards {
@@ -76,7 +79,7 @@ url("./font/ChangaOne-Regular.ttf") format("truetype");
 }
 /* spacing */
 .searchGroup {
-  padding: 5px;;
+  padding: 5%;
 }
 /* spacing */
 .notifications {

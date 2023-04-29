@@ -123,15 +123,16 @@ export default function GroupCard() {
           spacing={2}
           direction="row"
         >       
-          
             <Grid item xs={6} sm={6}  className="searchGroup">
               <TextField className="SearchText" type="text" placeholder='Search Groups' variant="outlined" value={nameSearch} onChange={(e) => setNameSearch(e.target.value)} size="small"/>
             </Grid>
-            <Grid item xs={6} sm={6}  className="searchGroup">
+            <Grid item xs={6} sm={1} align="left" className="searchGroup">
               <Button className="groupButton" variant="contained" type="search" onClick={handleSearch}>Search</Button>
+              </Grid>
+              <Grid item xs={12} sm={3} align="left" className="searchGroup">
               <Button className="groupButton" variant="contained" type="submit" onClick={clearFilter} style={{ marginLeft: '1em' }}>Clear Filter</Button>
             </Grid>
-            <Grid item xs={12} sm={6} md={3}>
+            <Grid item xs={12} sm={2} align="left">
               <Button className="createGroup" variant="contained" type="button" as={Link} to="/CreateGroup">Create Group</Button>
             </Grid>
           </Grid>

@@ -9,6 +9,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormLabel from '@mui/material/FormLabel';
 import BurgerMenu from './components/BurgerNav';
 import {Select, MenuItem } from '@mui/material';
+import { InputLabel } from '@material-ui/core';
 import Cookies from 'js-cookie';
 // imports
 
@@ -104,53 +105,60 @@ import Cookies from 'js-cookie';
         return (
             <>
             <BurgerMenu />
-        <Grid container spacing = {3} align="center" className="event-form">
-            <Grid item xs={12} align="center" className="eventTitle">
-            <TextField label="title" value={title} onChange={(e) => setTitle(e.target.value)} variant="outlined"/>
-            </Grid>
-            <Grid item xs={12} align="center">
-            <TextField label="Start 
-            Time" type="datetime-local" value={start} onChange={(e) => setStartTime(e.target.value)} variant="outlined"/>         
-            </Grid>
-            <Grid item xs={12} align="center">
-            <TextField label="End Time" type="datetime-local" value={end} onChange={(e) => setEndTime(e.target.value)} variant="outlined"/>
-            </Grid>
-            <Grid item xs={12} align="center">
-                <FormControl>
-                    <FormLabel id="demo-controlled-radio-buttons-group">Alert</FormLabel>
-                    <RadioGroup
-                        aria-labelledby="demo-controlled-radio-buttons-group"
-                        name="controlled-radio-buttons-group"
-                        value={alert}
-                        onChange={(e) => setAlert(e.target.value)}
-                    >
-                        <FormControlLabel value={1} control={<Radio />} label="Yes" />
-                        <FormControlLabel value={0} control={<Radio />} label="No" />
-                    </RadioGroup>
+            <h2 style={{ textAlign: "center" }}>Create Event</h2>
+            <Grid container spacing = {3} align="center" className="event-form">
+                <Grid item xs={12} align="center" className="eventTitle">
+                <TextField label="title" value={title} onChange={(e) => setTitle(e.target.value)}/>
+                </Grid>
+                <Grid item xs={6} align="right">
+                <InputLabel shrink htmlFor="start-time-input">
+                    Start Time
+                </InputLabel>
+                <TextField id="start-time-input" type="datetime-local" value={start} onChange={(e) => setStartTime(e.target.value)}/>         
+                </Grid>
+                <Grid item xs={6} align="left" alignItems="flex-start">
+                <InputLabel shrink htmlFor="end-time-input">
+                    End Time
+                </InputLabel>
+                <TextField id="end-time-input" type="datetime-local" value={end} onChange={(e) => setEndTime(e.target.value)}/>
+                </Grid>
+                <Grid item xs={6} align="right">
+                    <FormControl>
+                        <FormLabel sx={{ textAlign: "center" }} id="demo-controlled-radio-buttons-group">Alert</FormLabel>
+                        <RadioGroup
+                            row
+                            aria-labelledby="demo-controlled-radio-buttons-group"
+                            name="controlled-radio-buttons-group"
+                            value={alert}
+                            onChange={(e) => setAlert(e.target.value)}
+                        >
+                            <FormControlLabel value={1} control={<Radio />} label="Yes" />
+                            <FormControlLabel value={0} control={<Radio />} label="No" />
+                        </RadioGroup>
+                    </FormControl>
+                </Grid>
+                <Grid item xs={6} align="left" sx={{ textAlign: "center" }}>
+                    <TextField label="Access Level" type="number" value={accesslevel} onChange={(e) => setAccessLevel(e.target.value)} InputProps={{ inputProps: { min: 0, max: 5 } }} sx={{ width: "100%" }}/>
+                </Grid>
+                <Grid item xs={12} align="center">
+                <FormControl component="fieldset">
+                <RadioGroup row aria-label="eventOptions" name="eventOptions" value={selectedOption} onChange={handleOptionChange}>
+                    <FormControlLabel value="studentEvents" control={<Radio checked={selectedOption === 'studentEvents' ? true : false} />} label="Student Event" />
+                    <FormControlLabel value="groupEvents" control={<Radio checked={selectedOption === 'groupEvents' ? true : false} />} label="Group Event" />
+                </RadioGroup>
+                {selectedOption === 'groupEvents' && (
+                    <Select style={{marginLeft: "20px"}} value={selectedGroup} onChange={handleGroupChange}>
+                    {groups.map(group => (
+                        <MenuItem key={group.groupid} value={group.groupid}>{group.name}</MenuItem>
+                    ))}
+                    </Select>
+                )}
                 </FormControl>
+                </Grid>
+                <Grid item xs={12}>
+                    <Button type="submit" onClick={handleSubmit} color="primary" variant='contained'>Add Event</Button>
+                </Grid>
             </Grid>
-            <Grid item xs={12} align="center">
-                <TextField label="Access Level" type="number" value={accesslevel} onChange={(e) => setAccessLevel(e.target.value)} InputProps={{ inputProps: { min: 0, max: 5 } }} />
-            </Grid>
-            <Grid item xs={12} align="center">
-            <FormControl component="fieldset">
-              <RadioGroup row aria-label="eventOptions" name="eventOptions" value={selectedOption} onChange={handleOptionChange}>
-                <FormControlLabel value="studentEvents" control={<Radio checked={selectedOption === 'studentEvents' ? true : false} />} label="Student Event" />
-                <FormControlLabel value="groupEvents" control={<Radio checked={selectedOption === 'groupEvents' ? true : false} />} label="Group Event" />
-              </RadioGroup>
-              {selectedOption === 'groupEvents' && (
-                <Select style={{marginLeft: "20px"}} value={selectedGroup} onChange={handleGroupChange}>
-                  {groups.map(group => (
-                    <MenuItem key={group.groupid} value={group.groupid}>{group.name}</MenuItem>
-                  ))}
-                </Select>
-              )}
-            </FormControl>
-            </Grid>
-            <Grid item xs={12}>
-                 <Button type="submit" onClick={handleSubmit} color="primary" variant='contained'>Add Event</Button>
-            </Grid>
-        </Grid>
         </>
     );
 }

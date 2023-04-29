@@ -14,14 +14,14 @@ const Support = () => {
     <p>A: Navigate to the Groups page, and click "Create Group", you'll then imput the information of your new group.</p>
     <br></br>
     <br></br>
-    <p>Q: What are "Announcements"?</p>
-    <p>A: Announcements are given to us from group leaders who wish for others to come check out their groups!, contact us if you wish
-      to put an announcment on the Home page!
+    <p>Q: What are "Messages"?</p>
+    <p>A: Messages can be sent by clicking send message and entering another users email and then enter the content and hit send.
     </p>
     <br></br>
     <br></br>
-    <p>Q:...........</p>
-    <p>A:...........</p>
+    <p>Q: What are "Events"?</p>
+    <p>A: Events can be created for just yourself or can be linked to a group. They then can be filtered on the calendar page.
+    </p>
     <br></br>
     <br></br>
     <h2>Need more help?</h2>
