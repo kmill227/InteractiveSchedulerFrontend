@@ -6,7 +6,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import { ListItemIcon } from '@material-ui/core';
-import Burger from "./components/Burger";
+import Grid from "@material-ui/core/Grid";
 import Cookies from 'js-cookie';
 
 export default function(){
@@ -89,23 +89,20 @@ export default function(){
         <h1 id="homeHeader">Home</h1>
         <div id="Home_mainContent">
             <h2>Today's Events:</h2>
-            <List sx={{ width: '100%', maxWidth: 360,}}>   {/*styling*/}
+            <Grid container spacing={2} justifyContent="center" > {/* add Grid container */}
              <br/>
                 {data.map(elem => (
-                    <ListItem 
-                    alignItems="flex-start"
-                    sx={{ border: '1px solid gray', borderRadius: '5px', mb: 2 }}>
-                        <ListItemText
-                            primary = {<h3>{elem.title}</h3>}
-                            secondary = {new Date(elem.start).toLocaleString('en-US')}
-                            sx={{ fontSize: '3rem' }}
-                        />
-                    </ListItem>
+                        <Grid item key={elem.id}>
+                            <ListItemText
+                                primary = {<h3>{elem.title}</h3>}
+                                secondary = {new Date(elem.start).toLocaleString('en-US')}
+                                sx={{ fontSize: '3rem' }}
+                            />
+                        </Grid>
                 ))}
-            </List>
-
+            </Grid>
             <h2>Upcoming Events:</h2>
-                <List sx={{ width: '100%', maxWidth: 360,}}> {/*styling*/}
+                <List sx={{ width: '100%', maxWidth: 360}}> {/*styling*/}
                 <br/>
                     {weekData.map(elemWeek => (
                         <ListItem 

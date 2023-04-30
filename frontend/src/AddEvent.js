@@ -63,6 +63,7 @@ import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } 
                     "accesslevel": accesslevel,
                     "alert": alert,
                     "groupid": selectedGroup,
+                    "studentid": studentid,
                })
 
             }
@@ -101,6 +102,7 @@ import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } 
             "accesslevel": accesslevel,
             "alert": alert,
             "groupid": groupid,
+            "studentid": studentid
         });  
       };
     
