@@ -103,7 +103,9 @@ useEffect(() => {
   fetchGroups();
 }, [selectedGroup]);
 
-
+useEffect(() => {
+  fetchData();
+}, [url]);
   return (
     <>
       <BurgerMenu />
