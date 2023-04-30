@@ -137,7 +137,7 @@ import Cookies from 'js-cookie';
 
     // Navigate back to the home page when the cancel button is clicked
     let handleCancel = () => {
-        navigate('/Home'); 
+        navigate('/CalendarApp'); 
     }
         return (
             <>
