@@ -12,7 +12,7 @@ export default function Group(){
         <BurgerMenu /> {/*navbar*/}
         <div className="groups">
           <div className={"groupCards"}>
-            <GroupCard /> {/*nesting group card component that pulls all groups*/}
+            <GroupCard /> {/*nesting group card component that will list groups*/}
           </div>
         </div>
       </>

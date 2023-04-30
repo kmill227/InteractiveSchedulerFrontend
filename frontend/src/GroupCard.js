@@ -12,20 +12,26 @@ import Grid from "@material-ui/core/Grid";
 import { useState, useEffect } from 'react';
 import BurgerMenu from './components/BurgerNav';
 import { TextField } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
-
+import {Dialog,
+    DialogTitle,
+    DialogContent,
+    DialogContentText,
+    DialogActions
+} from '@mui/material';
 // imports
 
 export default function GroupCard() {
   const cookieData = Cookies.get('userInfo');
   const studentid = JSON.parse(cookieData).studentid; 
-  const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [nameSearch, setNameSearch] = useState("");
+  const navigate = useNavigate();  // navigate hook to redirect user
+  const [open, setOpen] = useState(false);
 
   
   const handleSearch = (e) => {
@@ -59,6 +65,7 @@ export default function GroupCard() {
       });
       res.then(response => response.text())   
       .catch(error => console.log("Error detected: " + error))
+
    }
 
    let handleJoinGroup = (groupid) => {
@@ -74,8 +81,8 @@ export default function GroupCard() {
     });
     res.then(response => response.text())   
     .catch(error => console.log("Error detected: " + error))
+    setOpen(true);
 
-    alert("Joined Group!");
  }
   const style = {
     position: 'absolute',
@@ -145,73 +152,60 @@ export default function GroupCard() {
       direction="row"
       justifyContent="flex-start"
       alignItems="flex-start"
-  >
-      {mydata.map(myelem => (
-          <Grid item xs={12} sm={6} md={3} key={myelem.groupid}>
-              <Card>
-                  <CardHeader
-                      title={`${myelem.name}`} variant="h5"
-                  />
-                  <CardContent>
-                    {myelem.description}
-                  </CardContent>
-      <CardActions className={"cardButton"}>
-      </CardActions>
-              </Card>
-              <Modal
-    open={open}
-    onClose={handleClose}
-    aria-labelledby="modal-modal-title"
-    aria-describedby="modal-modal-description"
-  >
-    <Box sx={style}>
-      <Typography id="modal-modal-title" variant="h6" component="h2">
-       Joined Group!!
-      </Typography>
-      <Button type="button" onClick={handleClose} variant="contained">Close</Button>
-    </Box>
-  </Modal>
-           </Grid>
-      ))}
-  </Grid>
-  <br/>
-  <h3 id="groupTitle">All Groups</h3>
-  <Grid
-      container
-      spacing={2}
-      direction="row"
-      justifyContent="flex-start"
-      alignItems="flex-start"
-  >
-      {data.map(elem => (
-          <Grid item xs={12} sm={6} md={3} key={elem.groupid}>
-              <Card>
-                  <CardHeader
+      >
+        {mydata.map(myelem => (
+            <Grid item xs={12} sm={6} md={3} key={myelem.groupid}>
+                <Card>
+                    <CardHeader
+                        title={`${myelem.name}`} variant="h5"
+                    />
+                    <CardContent>
+                      {myelem.description}
+                    </CardContent>
+                </Card>
+            </Grid>
+        ))}
+      </Grid>
+      <br/>
+      <h3 id="groupTitle">All Groups</h3>
+      <Grid
+          container
+          spacing={2}
+          direction="row"
+          justifyContent="flex-start"
+          alignItems="flex-start"
+      >
+        {/*Mapping data in cards */}
+          {data.map(elem => (
+              <Grid item xs={12} sm={6} md={3} key={elem.groupid}>
+                  <Card>
+                    <CardHeader
                       title={`${elem.name}`} variant="h5"
-                  />
-                  <CardContent>
-                    {elem.description}
-                  </CardContent>
-      <CardActions className={"cardButton"}>
-        <Button type="submit" size="small" onClick={() => handleJoinGroup(elem.groupid)}>Join Group</Button>
-      </CardActions>
-              </Card>
-              <Modal
-    open={open}
-    onClose={handleClose}
-    aria-labelledby="modal-modal-title"
-    aria-describedby="modal-modal-description"
-  >
-    <Box sx={style}>
-      <Typography id="modal-modal-title" variant="h6" component="h2">
-       Joined Group!!
-      </Typography>
-      <Button type="button" onClick={handleClose} variant="contained">Close</Button>
-    </Box>
-  </Modal>
-           </Grid>
-      ))}
-  </Grid>
-  </div>
+                    />
+                    <CardContent>
+                      {elem.description}
+                    </CardContent>
+                    <CardActions className={"cardButton"}>
+                      <Button type="submit" size="small" onClick={() => handleJoinGroup(elem.groupid)}>Join Group</Button>
+                    </CardActions>
+                  </Card>
+              </Grid>
+          ))}
+      </Grid>
+      {/*Dialog box to open when set open is true */}
+        <Dialog open={open} onClose={() => setOpen(false)}>
+          <DialogTitle>Joined Group</DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              You joined the group successfully!
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={() =>     window.location.reload()} color="primary" autoFocus>
+              OK
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </div>
     );
 }

@@ -7,6 +7,7 @@ const Support = () => {
     <>
     <BurgerMenu /> {/*navbar*/}
     <div style={{marginLeft: "1%"}}>   {/*styling*/}
+    {/*Render simple html for support page */}
     <h1 id="supportHeader">Support</h1>
     <div id="Support_mainContent">
     <h2>Frequently Asked Questions</h2>

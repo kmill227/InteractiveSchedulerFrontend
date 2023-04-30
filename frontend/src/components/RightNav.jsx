@@ -32,8 +32,9 @@ const Ul = styled.ul`
 
 
 const RightNav = ({ open }) => {
+  //Rendering list of pages to link to on click
   return (
-    <Ul open={open}>
+    <Ul open={open}> 
       <li><a href="../Home" id="link">Home</a></li>
       <li><a href="../Groups" id="link">Groups</a></li>
       <li><a href="../CalendarApp" id="link">Calendar</a></li>

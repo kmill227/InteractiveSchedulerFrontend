@@ -5,14 +5,14 @@ import Cookies from 'js-cookie';
 // imports
 
 export default function() {
-    const cookieData = Cookies.get('userInfo');
-    const student = JSON.parse(cookieData).userName;
+    const cookieData = Cookies.get('userInfo'); //get cookie date
+    const student = JSON.parse(cookieData).userName; // get username from cookie data
     return (
         <>
         <BurgerMenu/>     
         <div style={{marginLeft: "1%"}}>
         <h2 id="accountHeader">Account Information</h2>
-            Username: {student}
+            Username: {student} {/*Render username */}
         </div>
         <br></br>
         <div style={{marginLeft: "1%"}}>

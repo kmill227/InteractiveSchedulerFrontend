@@ -1,40 +1,46 @@
-import React, { useState } from 'react';
-import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
-import TextField from "@material-ui/core/TextField";
-import FormControl from "@material-ui/core/FormControl";
-import Radio from "@material-ui/core/Radio";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import FormLabel from '@mui/material/FormLabel';
+import React, { useState, useEffect } from 'react';
+import {
+    Grid,
+    TextField,
+    Radio,
+    RadioGroup,
+    FormControl,
+    FormControlLabel,
+    FormLabel,
+    Button,
+    Select,
+    MenuItem,
+    Dialog,
+    DialogTitle,
+    DialogContent,
+    DialogContentText,
+    DialogActions
+} from '@mui/material';
 import BurgerMenu from './components/BurgerNav';
-import {Select, MenuItem } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
-import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } from '@mui/material';
-
 // imports
 
 
     function AddEvent() {
-        const [title, setTitle] = useState("");
+        const cookieData = Cookies.get('userInfo'); // getting cookie data which contains student id
+        const studentid = JSON.parse(cookieData).studentid; // getting student id from cookie
+        const [title, setTitle] = useState(""); // using state hooks to assign form values and change values when selecting radio buttons and group dropdown
         const [start, setStartTime] = useState("");
         const [end, setEndTime] = useState("");
         const [accesslevel, setAccessLevel] = useState(1);
-        const [alert, setAlert] = useState(1);
-        const cookieData = Cookies.get('userInfo');
-        const studentid = JSON.parse(cookieData).studentid;
+        const [alert, setAlert] = useState(0);
         const [data, setStudentData] = useState([]);
-        const [selectedGroup, setSelectedGroup] = useState('');
+        const [selectedGroup, setSelectedGroup] = useState(''); 
         const [groups, setGroups] = useState([]);
         const [selectedOption, setSelectedOption] = useState(null);
         const [requestBody, setRequestBody] = useState({});
-        const url = `http://127.0.0.1:8000/api/events`;
-        const groupUrl = `http://127.0.0.1:8000/api/groups?studentid=${studentid}`;
-        const navigate = useNavigate();
+        const url = `http://127.0.0.1:8000/api/events`; //setting up API endpoint url to events
+        const groupUrl = `http://127.0.0.1:8000/api/groups?studentid=${studentid}`; // API endpoint for group dropdown
+        const navigate = useNavigate();  // navigate hook to redirect user
         const [open, setOpen] = useState(false);
 
-        const fetchGroups = async () => {
+        const fetchGroups = async () => { //function to fetch the groups for a student and using hook to set the groups 
             try {
               const response = await fetch(groupUrl);
               const data = await response.json();
@@ -44,8 +50,9 @@ import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } 
             }
           }
        
-        let handleSubmit = (e) => {
-            if (selectedOption === "studentEvents"){
+        let handleSubmit = (e) => { // handle submit function
+            
+            if (selectedOption === "studentEvents"){ // sets request body for student event creation
                 setRequestBody({
                     "title": title,
                     "start": start,
@@ -55,7 +62,7 @@ import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } 
                     "studentid": studentid,
                })
             }
-            else if (selectedOption === "groupEvents"){
+            else if (selectedOption === "groupEvents"){ // sets request body for group events creation
                 setRequestBody({
                     "title": title,
                     "start": start,
@@ -67,30 +74,39 @@ import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } 
                })
 
             }
-            console.log(requestBody);
+            /* Now will call fetch request to add event information using request body
+            */
             let res = fetch('http://127.0.0.1:8000/api/events', {
-
             method: "PUT",
             headers: {'Content-Type': 'application/json' },
             body : JSON.stringify(requestBody),
             
         });
-        res.then(response => response.text())   
-        .catch(error => console.log("Error detected: " + error))
-        setOpen(true);
+        res.then(response => {
+            if (response.ok) {
+              setOpen(true); // open dialog box to let user know it was successful if response sends back ok 
+            }
+            else {
+                alert("Event not added!");
+            }
+            return response.text();
+          })
+          .catch(error => console.log("Error detected: " + error)); // console any errors
     } 
 
-    const fetchData= async () => {
-       setRequestBody({
+      // Set the request body with the form data
+      const fetchData= async () => {
+        setRequestBody({
             "title": title,
             "start": start,
             "end" : end,
             "accesslevel": accesslevel,
             "alert": alert,
             "studentid": studentid,
-       });
-      };
+        });
+    };
 
+    // Update the request body with the selected group
     const handleGroupChange = (event) => {
         const value = event.target.value;
         setSelectedGroup(value);
@@ -104,36 +120,42 @@ import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } 
             "groupid": groupid,
             "studentid": studentid
         });  
-      };
+    };
     
-     const handleOptionChange = (event) => {
-      const value = event.target.value;
-      setSelectedOption(value);
-      if (value === 'groupEvents') {
-        fetchGroups();
-      } else {
-        fetchData();
-        setGroups([]);
-        setSelectedGroup('');
-      }
+    // Update the selected option and fetch the list of groups if necessary
+    const handleOptionChange = (event) => {
+        const value = event.target.value;
+        setSelectedOption(value);
+        if (value === 'groupEvents') {
+            fetchGroups();
+        } else {
+            fetchData();
+            setGroups([]);
+            setSelectedGroup('');
+        }
     };
 
+    // Navigate back to the home page when the cancel button is clicked
     let handleCancel = () => {
-        navigate('/Home'); // redirect to the login page
+        navigate('/Home'); 
     }
         return (
             <>
+            {/*Render the Burger menu  */}
             <BurgerMenu />
             <br></br>
             <h2 style={{ textAlign: "center" }}>Create Event</h2>
             <Grid container spacing = {3} align="center" className="event-form">
+                {/*Render the title input field and set value */}
                 <Grid item xs={12} align="center" className="eventTitle">
                     <TextField 
                         label="title" 
                         value={title} 
                         onChange={(e) => setTitle(e.target.value)}
+                        required
                     />
                 </Grid>
+                {/*Render the start time input field  and set value*/}
                 <Grid item xs={12} align="center">
                     <TextField
                         id="date"
@@ -143,8 +165,10 @@ import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } 
                         value={start} 
                         onChange={(e) => setStartTime(e.target.value)}  
                         InputLabelProps={{ shrink: true }} 
+                        required
                     />
                 </Grid>
+                {/*Render the end time input field and set the value */}
                 <Grid item xs={12} align="center" alignItems="flex-start">
                     <TextField id="date"
                         label="End Time"
@@ -153,8 +177,10 @@ import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } 
                         value={end} 
                         onChange={(e) => setEndTime(e.target.value)} 
                         InputLabelProps={{ shrink: true }} 
+                        required
                     />
                 </Grid>
+                {/*Render the alert radio buttons and set the value */}
                 <Grid item xs={6} align="right">
                     <FormControl>
                         <FormLabel sx={{ textAlign: "center" }} id="demo-controlled-radio-buttons-group">Alert</FormLabel>
@@ -163,16 +189,18 @@ import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } 
                             aria-labelledby="demo-controlled-radio-buttons-group"
                             name="controlled-radio-buttons-group"
                             value={alert}
-                            onChange={(e) => setAlert(e.target.value)}
-                        >
+                            onChange={(e) => setAlert(parseInt(e.target.value))}
+                            >
                             <FormControlLabel value={1} control={<Radio />} label="Yes" />
                             <FormControlLabel value={0} control={<Radio />} label="No" />
                         </RadioGroup>
                     </FormControl>
                 </Grid>
-                <Grid item xs={6} align="left" sx={{ textAlign: "center" }}>
+                {/*Render the access level input field and set the value */}
+                <Grid item xs={1} align="center" sx={{ textAlign: "left" }}>
                     <TextField label="Access Level" type="number" value={accesslevel} onChange={(e) => setAccessLevel(e.target.value)} InputProps={{ inputProps: { min: 0, max: 5 } }} sx={{ width: "100%" }}/>
                 </Grid>
+                {/*Render the event type radio buttons and set the value */}
                 <Grid item xs={12} align="center">
                 <FormControl component="fieldset">
                 <RadioGroup row aria-label="eventOptions" name="eventOptions" value={selectedOption} onChange={handleOptionChange}>
@@ -182,19 +210,22 @@ import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions } 
                 {selectedOption === 'groupEvents' && (
                     <Select style={{marginLeft: "20px"}} value={selectedGroup} onChange={handleGroupChange}>
                     {groups.map(group => (
-                        <MenuItem key={group.groupid} value={group.groupid}>{group.name}</MenuItem>
+                        <MenuItem key={group.groupid} value={group.groupid}>{group.name}</MenuItem> // sets selected group value based on groupid
                     ))}
                     </Select>
                 )}
                 </FormControl>
                 </Grid>
                 <Grid item xs={12}>
-                    <Button type="submit" onClick={handleSubmit} color="primary" variant='contained'>Add Event</Button>
+                    {/*Disable submit button until title, start, end, and selected option are entered */}
+                    <Button type="submit" onClick={handleSubmit} color="primary" variant='contained' disabled={!title || !start || !end || !selectedOption}>Add Event</Button>
                 </Grid>
+                {/*Cancel button will call handle cancel function on click */}
                 <Grid item xs={12} align="center">
-                    <Button type="submit" onClick={handleCancel} color="secondary" variant='contained'>Cancel</Button>
+                    <Button type="submit" onClick={handleCancel} color="error" variant='contained'>Cancel</Button>
             </Grid>
             </Grid>
+            {/*Open dialog box when set to open is true which happens on successful submission of form*/}
             <Dialog open={open} onClose={() => setOpen(false)}>
                 <DialogTitle>Event Added</DialogTitle>
                 <DialogContent>

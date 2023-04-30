@@ -6,23 +6,23 @@ import TextField from "@material-ui/core/TextField";
 import { Button, FormControl, FormControlLabel, Radio, RadioGroup } from '@material-ui/core';
 import { Link, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
-
 // imports
 
 export default function Logout(){
 
-    const navigate = useNavigate();
-    const [logoutConfirmed, setLogoutConfirmed] = useState(false);
+    const navigate = useNavigate(); // navigate hook to redirect user
+    const [logoutConfirmed, setLogoutConfirmed] = useState(false); //checking if logout is confirmed with state hook
 
     let handleLogout = () => {
-        Cookies.remove('userInfo'); // remove the auth_token cookie
+        Cookies.remove('userInfo'); // remove the userInfo cookie
         navigate('/Login'); // redirect to the login page
     }
     let handleCancel = () => {
-        navigate('/Home'); // redirect to the login page
+        navigate('/Home'); // redirect to the home page
     }
 
-    let handleRadioChange = (e) => {
+    //checks value of radio button and sets logout hook to true if yes is selected
+    let handleRadioChange = (e) => { 
         if (e.target.value === "yes") {
             setLogoutConfirmed(true);
         } else {
@@ -32,6 +32,7 @@ export default function Logout(){
 
     return (
         <>
+            {/*Render form to let user confirm logout or cancel*/}
             <br></br>
             <h2 style={{ textAlign: "center" }}>Logging Out</h2>
             <Grid sx={{ margin: 'auto' }} container spacing={3} align="center">
